@@ -15,8 +15,20 @@ return {
     },
     {
         "rcarriga/nvim-notify",
-        lazy = false,
+        dependencies = {
+            'UnikMask/iroh-vim',
+        },
+        lazy = true,
+        event = 'VeryLazy',
         module = true,
-        config = function() vim.notify = require('notify') end
+        opts = {
+            timeout = 100,
+            fps = 60,
+            top_down = true,
+        },
+        config = function(_, opts)
+            require('notify').setup(opts)
+            vim.notify = require('notify')
+        end
     },
 }

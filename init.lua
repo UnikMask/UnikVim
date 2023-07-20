@@ -6,30 +6,28 @@ local setLeader = function(key)
 end
 setLeader(' ')
 
--- Load Lazy
-require("core.lazy")
-
 -- Load options
 vim.o.shiftwidth = 4
 vim.o.tabstop= 4
 vim.o.expandtab = true
 vim.o.termguicolors = true
---vim.o.number = true
+vim.o.number = true
 vim.o.autoindent = true
 vim.o.wrap = false
 vim.o.clipboard = "unnamedplus"
 vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
--- Load Keymaps
-require("core.keymaps")
+-- Load Lazy
+require("core.lazy")
 
+-- Setup mason if on
 local ok, mason = pcall(require, "mason")
 if ok then
     mason.setup()
 end
 
 
--- Load LSP utils
+-- Load core LSP utils
 require('core.lsp')
 
 -- Load Colorscheme
@@ -39,3 +37,6 @@ for _, name in pairs({"iroh"}) do
 	return
     end
 end
+
+-- Load final keymaps
+require('keymaps.windows')

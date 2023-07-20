@@ -3,6 +3,7 @@ return {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.2',
         dependencies = {
+            'rcarriga/nvim-notify',
             'nvim-lua/plenary.nvim',
             'ahmedkhalf/project.nvim',
             'rmagatti/auto-session',
@@ -12,31 +13,9 @@ return {
         },
         lazy = true,
         cmd = { 'Telescope' },
-        keys = {
-            {'<leader>ff', function()
-                require('telescope.builtin').find_files()
-            end},
-            {'<leader>fp', function()
-                require('telescope.builtin').find_files {
-                    cwd=vim.api.nvim_list_runtime_paths()[1],
-                }
-            end},
-            {'<leader>fg', function()
-                require('telescope.builtin').live_grep()
-            end},
-            {'<leader>fb', function()
-                require('telescope.builtin').buffers()
-            end},
-            {'<leader>fh', function()
-                require('telescope.builtin').help_tags()
-            end},
-            {'<leader>fr', function()
-                require('telescope.builtin').oldfiles()
-            end},
-            {'<leader>pp', function()
-                require('telescope').extensions.projects.projects({})
-            end}
-        },
+        init = function()
+            require('keymaps.telescope')
+        end,
         config = function()
             -- Load Telescope
             local telescope = require('telescope')
@@ -58,7 +37,7 @@ return {
                 end
             end
             load_extensions{
-                'lazy', 'fzf', 'file_browser', 'projects'
+                'lazy', 'fzf', 'file_browser', 'projects', 'notify', 'session-lens'
             }
         end
     },

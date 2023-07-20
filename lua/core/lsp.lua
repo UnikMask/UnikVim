@@ -2,21 +2,8 @@
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
     callback = function(ev)
-	vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
-	local lsp_map = function(lhs, rhs, desc)
-	    vim.keymap.set("n", lhs, rhs, {
-		silent = true,
-		buffer = ev.buf,
-		desc = desc
-	    })
-	end
-
-    -- Keymapping when LSPs are active
-	lsp_map('<leader>cd', vim.lsp.buf.definition, "Go to Definition")
-	lsp_map('<leader>ca', vim.lsp.buf.code_action, "Execute Code Action")
-	lsp_map('<leader>ct', vim.lsp.buf.type_definition, "See Type Definition")
-	lsp_map('<leader>cgd', vim.lsp.buf.declaration, "Go to Declarations")
-	lsp_map('<leader>h', vim.lsp.buf.hover, "Hover Definition")
+        vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+        require('keymaps.lsp').lsp()
     end
 })
 

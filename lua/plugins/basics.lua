@@ -3,7 +3,6 @@ local supported_langs = {
     'rust', 'cpp', 'cmake'
 }
 
-
 return {
     {
         'NeogitOrg/neogit',
@@ -13,10 +12,10 @@ return {
             'ahmedkhalf/project.nvim',
         },
         lazy = true,
-        keys = {
-            {'<leader>gg', function() require('neogit').open() end},
-        },
         cmd = { 'Neogit' },
+        init = function()
+            require('keymaps.misc').neogit()
+        end,
         opts = {
             kind = 'split_above',
             popup = {
@@ -39,25 +38,35 @@ return {
     },
     {
         'romgrk/barbar.nvim',
-        lazy = false,
+        lazy = true,
+        event = 'VeryLazy',
         dependencies = {
           'lewis6991/gitsigns.nvim',
           'nvim-tree/nvim-web-devicons',
         },
-        init = function()
-            vim.g.barbar_auto_setup = false
-        end,
-        config = function()
-            require('barbar').setup({
+        opts = {
             animation = true,
             auto_hide = true,
             separator = {left = '▎', right = ''},
             icons = {
                 button = '',
             },
-            })
+        },
+        init = function() vim.g.barbar_auto_setup = false end,
+        config = function(_, opts)
+            require('barbar').setup(opts)
+            require('keymaps.barbar')
         end,
+    },
+    {
+        'folke/which-key.nvim',
         opts = {},
+        lazy = true,
+        event = 'VeryLazy',
+        init = function ()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+        end
     },
     {
         'nvim-treesitter/nvim-treesitter',
@@ -89,39 +98,26 @@ return {
           "ahmedkhalf/project.nvim"
         },
         lazy = true,
-        keys = {
-            {'<leader>op'},
-        },
         cmd = {
             'NvimTreeToggle', 'NvimTreeOpen',
         },
-        config = function()
-            require("nvim-tree").setup {
-                sync_root_with_cwd = true,
-                respect_buf_cwd = true,
-                update_focused_file = {
-                    enable = true,
-                    update_root = true
-                },
-                vim.keymap.set('n', '<leader>op',
-                    require('nvim-tree.api').tree.toggle,
-                    {desc = 'Neovim-tree'})
-            }
+        init = function ()
+            require('keymaps.misc').nvimtree()
         end,
+        opts =  {
+            sync_root_with_cwd = true,
+            respect_buf_cwd = true,
+            update_focused_file = {
+                enable = true,
+                update_root = true
+            },
+        },
     },
     {
         'rmagatti/auto-session',
         lazy = false,
-        dependencies = {
-            'rcarriga/nvim-notify',
-        },
-        keys = {
-            {'<leader>ql', function()
-                require('auto-session').RestoreSession()
-            end},
-        },
         opts = {
-            log_level = vim.log.levels.INFO,
+            log_level = vim.log.levels.WARN,
             auto_session_enabled = false,
             auto_save_enabled = true,
             auto_restore_enabled = false,
@@ -134,10 +130,13 @@ return {
                 previewer = false,
             },
         },
+        init = function ()
+            require('keymaps.misc').auto_session()
+        end,
         config = function (_, opts)
             require('auto-session').setup(opts)
 
-            vim.api.nvim_create_autocmd({ "VimLeave" }, {
+            vim.api.nvim_create_autocmd({ "VimLeavePre" }, {
                 group = vim.api.nvim_create_augroup('UserAutoSession', {}),
                 callback = function()
                     require('auto-session').SaveSession()

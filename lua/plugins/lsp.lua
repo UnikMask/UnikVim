@@ -15,34 +15,19 @@ return {
             build = ":MasonUpdate"
 	    },
 	    'williamboman/mason-lspconfig.nvim',
-	    {
-            'j-hui/fidget.nvim',
-            tag = 'legacy',
-            dependencies = {
-                "rcarriga/nvim-notify",
-            }
-        },
+        'j-hui/fidget.nvim',
 	    'folke/neodev.nvim',
 	    "hrsh7th/cmp-nvim-lsp",
 	},
 	config = function()
+        -- Setup dependencies
 	    require('mason').setup()
-
 	    require('fidget').setup()
 	    require('neodev').setup()
 
+        -- Setup Mason module
 	    require('mason-lspconfig').setup {
-            ensure_installed = {
-                'lua_ls',
-                --'rust_analyzer',
-                'clangd',
-                'cmake',
-                --'dockerls',
-                --'eslint',
-                --'gopls',
-                --'jdtls',
-                'pylsp',
-            },
+            ensure_installed = { 'lua_ls', 'clangd', 'cmake', 'pylsp'},
             automatic_installation = true,
 	    }
 
@@ -53,23 +38,73 @@ return {
 	    -- Language-wise configuration
 	    local lspconfig = require('lspconfig')
 	    lspconfig["lua_ls"].setup({
-		capabilities = capabilities,
+            capabilities = capabilities,
+            settings = {
+                Lua = {
+                    completion = {
+                        callSnippet = "Replace",
+                    },
+                    diagnostics = {
+                        globals = { "vim" },
+                    },
+                    workspace = {
+                        library = {
+                            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                            [vim.fn.stdpath("config") .. "/lua"] = true,
+                        },
+                    },
+				},
+            },
 	    })
 	    lspconfig["pylsp"].setup({
-		capabilities = capabilities,
+            capabilities = capabilities,
 	    })
 	    lspconfig["clangd"].setup({
-		capabilities = capabilities,
+            capabilities = capabilities,
 	    })
 	    lspconfig["cmake"].setup({
-		capabilities = capabilities,
+            capabilities = capabilities,
 	    })
 	end
+    },
+    {
+        'mfussenegger/nvim-jdtls',
+        lazy = true,
+        ft = { 'java' },
+        dependencies = {
+            "hrsh7th/cmp-nvim-lsp",
+            "neovim/nvim-lspconfig",
+        },
+        opts = {
+            cmd = {'jdtls'},
+            root_dir = vim.fs.dirname(vim.fs.find({'gradlew', '.git', 'mvnw'}, { upward = true })[1]),
+        },
+        config = function(_, opts)
+            -- Set up dependencies
+	        require('fidget').setup()
+
+            local start_java_lsp = function()
+                require('jdtls').start_or_attach(opts)
+            end
+            vim.api.nvim_create_autocmd('FileType java', {
+                group = vim.api.nvim_create_augroup('NvimJDTLS', {}),
+                callback = function ()
+                    start_java_lsp()
+                end
+            })
+        end
+    },
+    {
+        'j-hui/fidget.nvim',
+        tag = 'legacy',
+        lazy = true,
+        opts = {},
     },
     {
 		"jose-elias-alvarez/null-ls.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
+            'j-hui/fidget.nvim',
 		},
 		config = function()
 			local null_ls = require("null-ls")
