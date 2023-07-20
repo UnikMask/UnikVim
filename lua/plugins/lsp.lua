@@ -1,5 +1,5 @@
 -- Function applied when the LSP is attached to a buffer.
-
+local lspconfig_ls = { 'lua_ls', 'clangd', 'cmake', 'pylsp'}
 
 
 return {
@@ -16,6 +16,7 @@ return {
 	    },
 	    'williamboman/mason-lspconfig.nvim',
         'j-hui/fidget.nvim',
+        'lukas-reineke/lsp-format.nvim',
 	    'folke/neodev.nvim',
 	    "hrsh7th/cmp-nvim-lsp",
 	},
@@ -31,14 +32,17 @@ return {
             automatic_installation = true,
 	    }
 
+        -- Set up LSP format wrapper
+        require('lsp-format').setup()
+
 	    -- Get client capabilities, and add cmp-nvim-lsp's capabilities.
 	    local capabilities = vim.lsp.protocol.make_client_capabilities()
 	    capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 	    -- Language-wise configuration
+        local ls_config = {}
 	    local lspconfig = require('lspconfig')
-	    lspconfig["lua_ls"].setup({
-            capabilities = capabilities,
+	    ls_config["lua_ls"] = {
             settings = {
                 Lua = {
                     completion = {
@@ -55,16 +59,22 @@ return {
                     },
 				},
             },
-	    })
-	    lspconfig["pylsp"].setup({
-            capabilities = capabilities,
-	    })
-	    lspconfig["clangd"].setup({
-            capabilities = capabilities,
-	    })
-	    lspconfig["cmake"].setup({
-            capabilities = capabilities,
-	    })
+	    }
+
+        -- Load all configurations with cmp capabilities
+        for _, ls in pairs(lspconfig_ls) do
+            if ls_config[ls] == nil then
+                ls_config[ls] = {
+                    capabilities = capabilities,
+                    on_attach = function (client)
+                        require("lsp-format").on_attach(client)
+                    end
+                }
+            else
+                ls_config[ls].capabilities = capabilities
+            end
+            lspconfig[ls].setup(ls_config[ls])
+        end
 	end
     },
     {
@@ -117,5 +127,5 @@ return {
 				},
 			})
 		end,
-    }
+    },
 }

@@ -15,6 +15,9 @@ wk.register({
         h = {function() bt().help_tags() end, 'Help tags'},
         r = {function() bt().oldfiles() end, 'Recent files'},
         w = {function() require('telescope').extensions.projects.projects {} end, 'Project'},
-
+        s = {function()
+                require('telescope')
+                require('auto-session.session-lens').search_session()
+            end, 'Sessions'},
     }
 }, { prefix = '<leader>'})

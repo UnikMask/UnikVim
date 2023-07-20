@@ -36,4 +36,19 @@ misc.auto_session = function ()
     }, prefix)
 end
 
+-- Lazy.nvim setup
+misc.lazy = function()
+    wk.register({
+        L = {
+            name = 'Lazy',
+            l = { require('lazy').home, 'Lazy Home'},
+            p = { require('lazy').profile, 'Profile'},
+            h = { require('lazy').health, 'Healthcheck'},
+            H = { require('lazy').help, 'Help Page'},
+            d = { require('lazy').debug, 'Debug Info'},
+
+        }
+    }, prefix)
+end
+
 return misc

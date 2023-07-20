@@ -30,4 +30,5 @@ lazy.setup("plugins", {
         patterns = {'UnikMask'},
     },
 })
+require('keymaps.misc').lazy()
 

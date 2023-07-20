@@ -117,7 +117,7 @@ return {
         'rmagatti/auto-session',
         lazy = false,
         opts = {
-            log_level = vim.log.levels.WARN,
+            log_level = vim.log.levels.INFO,
             auto_session_enabled = false,
             auto_save_enabled = true,
             auto_restore_enabled = false,
@@ -130,9 +130,7 @@ return {
                 previewer = false,
             },
         },
-        init = function ()
-            require('keymaps.misc').auto_session()
-        end,
+        init = function () require('keymaps.misc').auto_session() end,
         config = function (_, opts)
             require('auto-session').setup(opts)
 
