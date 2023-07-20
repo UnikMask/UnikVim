@@ -11,6 +11,8 @@ return {
 	    },
 	    'saadparwaiz1/cmp_luasnip',
 	},
+    lazy = true,
+    event = 'InsertEnter',
 	config = function()
 	    local cmp = require('cmp')
         local luasnip = require('luasnip')

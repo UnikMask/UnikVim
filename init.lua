@@ -14,9 +14,11 @@ vim.o.shiftwidth = 4
 vim.o.tabstop= 4
 vim.o.expandtab = true
 vim.o.termguicolors = true
-vim.o.number = true
+--vim.o.number = true
 vim.o.autoindent = true
+vim.o.wrap = false
 vim.o.clipboard = "unnamedplus"
+vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 -- Load Keymaps
 require("core.keymaps")

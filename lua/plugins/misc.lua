@@ -1,6 +1,7 @@
 return {
     {
         "chrisbra/Colorizer",
+        lazy = true,
         config = function()
             vim.g.colorizer_auto_color = true
             vim.g.colorizer_skip_comments = true
@@ -14,7 +15,8 @@ return {
     },
     {
         "rcarriga/nvim-notify",
-        event = 'VimEnter',
+        lazy = false,
+        module = true,
         config = function() vim.notify = require('notify') end
     },
 }
