@@ -1,4 +1,6 @@
 -- Load SPC as leader
+
+-- Load final keymaps
 local setLeader = function(key)
     vim.g.mapleader = key
     vim.g.maplocalleader = key
@@ -37,6 +39,3 @@ for _, name in pairs({"iroh"}) do
 	return
     end
 end
-
--- Load final keymaps
-require('keymaps.windows')
