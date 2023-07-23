@@ -22,12 +22,12 @@ return {
             telescope.setup({
                 pickers = {
                     find_files = {
-                    theme = "ivy"
+                        theme = "ivy"
                     }
                 }
             })
 
-            -- Setup extensions 
+            -- Setup extensions
             require('auto-session').setup_session_lens()
 
             -- Load Telescope extensions
@@ -36,7 +36,7 @@ return {
                     telescope.load_extension(ext)
                 end
             end
-            load_extensions{
+            load_extensions {
                 'lazy', 'fzf', 'file_browser', 'projects', 'notify', 'session-lens'
             }
         end

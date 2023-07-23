@@ -1,4 +1,4 @@
 return {
-    {"UnikMask/iroh-vim"},
-    { "romgrk/doom-one.vim"}
+    { "UnikMask/iroh-vim" },
+    { "romgrk/doom-one.vim" }
 }

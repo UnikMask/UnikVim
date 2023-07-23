@@ -4,12 +4,12 @@ return {
         event = 'VimEnter',
         dependencies = {
             'rmagatti/auto-session',
-            {'nvim-tree/nvim-web-devicons'}
+            { 'nvim-tree/nvim-web-devicons' }
         },
         opts = {
             theme = 'doom',
             shortcut_type = 'letter',
-            hide = {'statusline', 'tabline', 'winbar'},
+            hide = { 'statusline', 'tabline', 'winbar' },
             config = {
                 header = {
                     '',
@@ -46,7 +46,7 @@ return {
                         end,
                     },
                     {
-                        icon =  ' ',
+                        icon = ' ',
                         desc = 'Recently opened files',
                         key = 'r',
                         action = function()
@@ -54,7 +54,7 @@ return {
                         end,
                     },
                     {
-                        icon =  '󰈞 ',
+                        icon = '󰈞 ',
                         desc = 'Find file',
                         key = 'f',
                         action = function()
@@ -62,7 +62,7 @@ return {
                         end,
                     },
                     {
-                        icon =  ' ',
+                        icon = ' ',
                         desc = 'Open project',
                         key = 'p',
                         action = function()
@@ -70,21 +70,22 @@ return {
                         end,
                     },
                     {
-                    icon =  ' ',
-                    desc = 'Open private configuration',
-                    key = 'd',
-                    action = function()
-                        require('telescope.builtin').find_files({
-                            cwd=vim.api.nvim_list_runtime_paths()[1]
-                        }) end
+                        icon = ' ',
+                        desc = 'Open private configuration',
+                        key = 'd',
+                        action = function()
+                            require('telescope.builtin').find_files({
+                                cwd = vim.api.nvim_list_runtime_paths()[1]
+                            })
+                        end
                     },
                 },
-                footer = function ()
+                footer = function()
                     local stats = require('lazy').stats()
-                    return {'', '', stats.count
-                        .. ' packages loaded in '
-                        .. string.format('%.3f', stats.startuptime)
-                        .. ' milliseconds.'}
+                    return { '', '', stats.count
+                    .. ' packages loaded in '
+                    .. string.format('%.3f', stats.startuptime)
+                    .. ' milliseconds.' }
                 end,
             },
         },

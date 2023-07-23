@@ -1,19 +1,18 @@
-
 return {
     {
         "nvim-tree/nvim-tree.lua",
         dependencies = {
-          "nvim-tree/nvim-web-devicons",
-          "ahmedkhalf/project.nvim"
+            "nvim-tree/nvim-web-devicons",
+            "ahmedkhalf/project.nvim"
         },
         lazy = true,
         cmd = {
             'NvimTreeToggle', 'NvimTreeOpen',
         },
-        init = function ()
+        init = function()
             require('keymaps.misc').nvimtree()
         end,
-        opts =  {
+        opts = {
             sync_root_with_cwd = true,
             respect_buf_cwd = true,
             update_focused_file = {
@@ -46,7 +45,7 @@ return {
                         require('lazy.core.config')
                         .plugins['nvim-tree.lua']._.loaded ~= nil
                     if ok then
-                       require('nvim-tree.api').tree.close()
+                        require('nvim-tree.api').tree.close()
                     end
                 end },
             session_lens = {
@@ -55,8 +54,8 @@ return {
                 previewer = false,
             },
         },
-        init = function () require('keymaps.misc').auto_session() end,
-        config = function (_, opts)
+        init = function() require('keymaps.misc').auto_session() end,
+        config = function(_, opts)
             require('auto-session').setup(opts)
 
             vim.api.nvim_create_autocmd({ "VimLeavePre" }, {
