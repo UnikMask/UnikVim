@@ -2,7 +2,7 @@
 local lspconfig_ls = { 'lua_ls', 'clangd', 'cmake', 'pylsp'}
 local ts_supported_langs = {
     'lua', 'c', 'java', 'python', 'vim', 'vimdoc',
-    'rust', 'cpp', 'cmake', 'org', 'html', 'latex', 'lisp',
+    'rust', 'cpp', 'cmake', 'org', 'html', 'latex', 
 }
 
 

@@ -25,7 +25,9 @@ return {
     {
         'ahmedkhalf/project.nvim',
         lazy = true,
-        opts = {},
+        config = function()
+            require('project_nvim').setup({})
+        end
     },
     {
         'rmagatti/auto-session',
