@@ -1,5 +1,9 @@
 -- Function applied when the LSP is attached to a buffer.
 local lspconfig_ls = { 'lua_ls', 'clangd', 'cmake', 'pylsp'}
+local ts_supported_langs = {
+    'lua', 'c', 'java', 'python', 'vim', 'vimdoc',
+    'rust', 'cpp', 'cmake', 'org', 'html', 'latex', 'lisp',
+}
 
 
 return {
@@ -105,12 +109,6 @@ return {
         end
     },
     {
-        'j-hui/fidget.nvim',
-        tag = 'legacy',
-        lazy = true,
-        opts = {},
-    },
-    {
 		"jose-elias-alvarez/null-ls.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -127,5 +125,28 @@ return {
 				},
 			})
 		end,
+    },
+    {
+        'nvim-treesitter/nvim-treesitter',
+        dependencies = {
+            'RRethy/vim-illuminate',
+        },
+        lazy = true,
+        ft = ts_supported_langs,
+        config = function()
+            require('nvim-treesitter.configs').setup {
+                ensure_installed = ts_supported_langs,
+                auto_install = true,
+                highlight = {
+                    enable = true,
+                },
+                incremental_selection = {
+                    enable = true,
+                },
+                indent = {
+                    enable = true,
+                },
+            }
+        end
     },
 }

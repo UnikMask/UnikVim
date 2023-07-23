@@ -48,5 +48,27 @@ return {
 		extensions = {},
 	    }
 	end
-    }
+    },
+    {
+        'romgrk/barbar.nvim',
+        lazy = true,
+        event = 'VeryLazy',
+        dependencies = {
+          'lewis6991/gitsigns.nvim',
+          'nvim-tree/nvim-web-devicons',
+        },
+        opts = {
+            animation = true,
+            auto_hide = true,
+            separator = {left = '▎', right = ''},
+            icons = {
+                button = '',
+            },
+        },
+        init = function() vim.g.barbar_auto_setup = false end,
+        config = function(_, opts)
+            require('barbar').setup(opts)
+            require('keymaps.barbar')
+        end,
+    },
 }

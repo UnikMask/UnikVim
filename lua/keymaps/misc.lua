@@ -51,4 +51,12 @@ misc.lazy = function()
     }, prefix)
 end
 
+-- Orgmode setup
+misc.orgmode = function()
+    wk.register({
+        a = { function() require('orgmode').action('agenda.prompt', {opts = {buffer = false}}) end, 'org agenda'},
+        c = { function() require('orgmode').action('capture.prompt', {opts = {buffer = false}}) end, 'org capture'},
+    }, {prefix = '<leader>o'})
+end
+
 return misc

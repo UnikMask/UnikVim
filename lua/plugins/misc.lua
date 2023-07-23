@@ -1,3 +1,4 @@
+
 return {
     {
         "chrisbra/Colorizer",
@@ -11,6 +12,12 @@ return {
     {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
+        opts = {},
+    },
+    {
+        'j-hui/fidget.nvim',
+        tag = 'legacy',
+        lazy = true,
         opts = {},
     },
     {
@@ -29,6 +36,16 @@ return {
         config = function(_, opts)
             require('notify').setup(opts)
             vim.notify = require('notify')
+        end
+    },
+    {
+        'folke/which-key.nvim',
+        opts = {},
+        lazy = true,
+        event = 'VeryLazy',
+        init = function ()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
         end
     },
 }
