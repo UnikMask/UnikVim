@@ -133,20 +133,23 @@ return {
         },
         lazy = true,
         ft = ts_supported_langs,
-        config = function()
-            require('nvim-treesitter.configs').setup {
-                ensure_installed = ts_supported_langs,
-                auto_install = true,
-                highlight = {
-                    enable = true,
-                },
-                incremental_selection = {
-                    enable = true,
-                },
-                indent = {
-                    enable = true,
-                },
-            }
+        opts = {
+            ensure_installed = ts_supported_langs,
+            auto_install = true,
+            highlight = {
+                enable = true,
+            },
+            incremental_selection = {
+                enable = true,
+            },
+            indent = {
+                enable = true,
+            },
+        },
+        config = function(_, opts)
+            vim.o.foldmethod = "expr"
+            vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+            require('nvim-treesitter.configs').setup(opts)
         end
     },
 }

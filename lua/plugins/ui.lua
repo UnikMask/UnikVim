@@ -71,4 +71,9 @@ return {
             require('keymaps.barbar')
         end,
     },
+    {
+        'stevearc/dressing.nvim',
+        lazy = false,
+        opts = {},
+    }
 }

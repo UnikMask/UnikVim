@@ -11,7 +11,7 @@ maps.lsp = function()
             D = { vim.lsp.buf.declaration, "Go to Declaration" },
             h = { vim.lsp.buf.hover, "Hover Definition" },
             f = { vim.lsp.buf.format, "Format Document" },
-            r = { vim.lsp.buf.rename(nil, nil), "Rename Action" },
+            r = { vim.lsp.buf.rename, "Rename Action" },
         }
     }, { prefix = '<leader>' })
 end
