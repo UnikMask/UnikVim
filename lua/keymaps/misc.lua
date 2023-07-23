@@ -59,4 +59,13 @@ misc.orgmode = function()
     }, {prefix = '<leader>o'})
 end
 
+misc.notify = function()
+    wk.register({
+        n = {
+            name = 'Notifications',
+            h = { function() vim.cmd("Notifications") end, "History"},
+        }
+    }, prefix)
+end
+
 return misc
