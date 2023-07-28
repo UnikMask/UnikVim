@@ -47,4 +47,16 @@ return {
             vim.o.timeoutlen = 300
         end
     },
+    {
+        "numToStr/Comment.nvim",
+        lazy = true,
+        event = "VeryLazy",
+        opts = {},
+    },
+    {
+        "kylechui/nvim-surround",
+        lazy = true,
+        event = "VeryLazy",
+        opts = {},
+    }
 }

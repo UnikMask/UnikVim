@@ -36,7 +36,7 @@ return {
     desc = "Build a project by calling its OS's build script.",
     -- tags = {require("overseer").TAG.BUILD},
     condition = {
-        filetype = { "cpp" },
+        filetype = { "c", "cpp", "cmake" },
     }
 
 }

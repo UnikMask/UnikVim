@@ -68,6 +68,8 @@ misc.notify = function()
     }, prefix)
 end
 
+-- Overseer keymaps
+
 misc.overseer_init = function()
     wk.register({
         t = {
@@ -80,8 +82,43 @@ end
 
 misc.overseer_config = function()
     wk.register({
-        a = { function() vim.cmd("OverseerQuickAction") end, "Run Quick Action"}
-    }, { prefix = '<leader>t'})
+        a = { function() vim.cmd("OverseerQuickAction") end, "Run Quick Action" }
+    }, { prefix = '<leader>t' })
+end
+
+-- Toggleterm keymaps
+
+local get_term_cmds = function(num)
+    return {
+        name = "Terminal " .. num,
+        h = { function() require("toggleterm").toggle_command("direction=horizontal", num) end, "Toggle Terminal" },
+        f = { function() require("toggleterm").toggle_command("direction=float", num) end, "Toggle Terminal" },
+        v = { function() require("toggleterm").toggle_command("direction=vertical size=50", num) end,
+            "Toggle Terminal" },
+    }
+end
+misc.toggleterm = function()
+    local toggleterm_keymaps = {
+        r = {
+            name = "Terminal",
+            h = { function() require("toggleterm").toggle_command("direction=horizontal", nil) end, "Toggle Terminal" },
+            f = { function() require("toggleterm").toggle_command("direction=float", nil) end, "Toggle Terminal" },
+            v = { function() require("toggleterm").toggle_command("direction=vertical size=50", nil) end,
+                "Toggle Terminal" },
+        },
+    }
+    for i = 1, 9 do
+        toggleterm_keymaps.r[tostring(i)] = get_term_cmds(i)
+    end
+    wk.register({
+        toggleterm_keymaps,
+    }, prefix)
+    wk.register({
+        ["<Escape>"] = {
+            "<C-\\><C-n>",
+            "Escape terminal",
+        }
+    }, { mode = "t" })
 end
 
 return misc
