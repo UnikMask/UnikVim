@@ -21,12 +21,12 @@ return {
 					},
 				},
 			},
-            dapui = {},
-            mason = {
+			dapui = {},
+			mason = {
 				ensure_installed = { "python", "cpptools", "stylua" },
 				automatic_installation = true,
 				handlers = {},
-            }
+			},
 		},
 		lazy = true,
 		init = function()

@@ -11,6 +11,7 @@ return {
                 "toggleterm",
                 shell = true,
                 auto_scroll = true,
+                open_on_start = false,
             },
             templates = {
                 "builtin",

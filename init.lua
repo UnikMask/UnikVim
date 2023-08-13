@@ -18,6 +18,7 @@ vim.o.autoindent = true
 vim.o.wrap = false
 vim.o.clipboard = "unnamedplus"
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.o.guifont = "FiraCode Nerd Font Mono 12"
 
 -- Load Lazy
 require("core.lazy")
