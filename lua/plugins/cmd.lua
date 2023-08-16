@@ -32,7 +32,7 @@ return {
         version = "*",
         opts = {},
         init = function()
-            require("keymaps.misc").toggleterm()
+            require("keymaps.cmd")()
         end
     }
 }
