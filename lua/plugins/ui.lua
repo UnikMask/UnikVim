@@ -73,7 +73,8 @@ return {
     },
     {
         'stevearc/dressing.nvim',
-        lazy = false,
+        lazy = true,
+        event = 'VeryLazy',
         opts = {},
     }
 }

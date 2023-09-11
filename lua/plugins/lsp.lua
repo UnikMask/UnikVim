@@ -4,11 +4,13 @@ local ts_supported_langs = {
 	"lua",
 	"c",
 	"java",
+    "ron",
 	"python",
 	"vim",
 	"vimdoc",
 	"rust",
 	"cpp",
+    "go",
 	"cmake",
 	"org",
 	"html",
@@ -27,8 +29,8 @@ return {
 			"lua",
 			"python",
 			"cmake",
-			"rust",
 			"docker",
+            "go",
 			"javascript",
 			"typescript",
 		},
@@ -124,6 +126,19 @@ return {
 			})
 		end,
 	},
+    {
+        "simrat39/rust-tools.nvim",
+        lazy = true,
+        ft = { 'rust' },
+        depedencies = {
+            'neovim/nvim-lspconfig',
+        },
+        opts = {
+            server = {
+                capabilities = get_capabilities(),
+            }
+        }
+    },
 	{
 		"~p00f/clangd_extensions.nvim",
 		lazy = true,
