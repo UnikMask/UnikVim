@@ -1,16 +1,16 @@
 -- Function applied when the LSP is attached to a buffer.
-local lspconfig_ls = { "lua_ls", "cmake", "pylsp" }
+local lspconfig_ls = { "lua_ls", "cmake", "pylsp", "gopls" }
 local ts_supported_langs = {
 	"lua",
 	"c",
 	"java",
-    "ron",
+	"ron",
 	"python",
 	"vim",
 	"vimdoc",
 	"rust",
 	"cpp",
-    "go",
+	"go",
 	"cmake",
 	"org",
 	"html",
@@ -30,7 +30,7 @@ return {
 			"python",
 			"cmake",
 			"docker",
-            "go",
+			"go",
 			"javascript",
 			"typescript",
 		},
@@ -41,7 +41,7 @@ return {
 			"lukas-reineke/lsp-format.nvim",
 			"folke/neodev.nvim",
 			"hrsh7th/cmp-nvim-lsp",
-            "folke/trouble.nvim",
+			"folke/trouble.nvim",
 		},
 		config = function()
 			-- Setup dependencies
@@ -126,19 +126,19 @@ return {
 			})
 		end,
 	},
-    {
-        "simrat39/rust-tools.nvim",
-        lazy = true,
-        ft = { 'rust' },
-        depedencies = {
-            'neovim/nvim-lspconfig',
-        },
-        opts = {
-            server = {
-                capabilities = get_capabilities(),
-            }
-        }
-    },
+	{
+		"simrat39/rust-tools.nvim",
+		lazy = true,
+		ft = { "rust" },
+		depedencies = {
+			"neovim/nvim-lspconfig",
+		},
+		opts = {
+			server = {
+				capabilities = get_capabilities(),
+			},
+		},
+	},
 	{
 		"~p00f/clangd_extensions.nvim",
 		lazy = true,
@@ -195,6 +195,7 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		dependencies = {
 			"RRethy/vim-illuminate",
+            "folke/todo-comments.nvim",
 		},
 		lazy = true,
 		ft = ts_supported_langs,
@@ -220,7 +221,7 @@ return {
 	{
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-        lazy = true,
+		lazy = true,
 		opts = {},
 	},
 }

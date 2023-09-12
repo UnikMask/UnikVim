@@ -58,5 +58,10 @@ return {
         lazy = true,
         event = "VeryLazy",
         opts = {},
+    },
+    {
+        "folke/todo-comments.nvim",
+        lazy = true,
+        dependencies = { "nvim-lua/plenary.nvim" },
     }
 }

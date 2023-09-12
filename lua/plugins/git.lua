@@ -23,12 +23,11 @@ return {
         },
     },
     {
-        "kdheepak/lazygit.nvim",
+        "lewis6991/gitsigns.nvim",
         lazy = true,
-        cmd = { 'Lazygit' },
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            'ahmedkhalf/project.nvim'
+        event = "VeryLazy",
+        opts = {
+            signcolumn = true,
         },
-    },
+    }
 }
