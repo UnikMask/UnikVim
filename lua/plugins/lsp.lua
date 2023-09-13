@@ -16,9 +16,15 @@ local ts_supported_langs = {
 	"html",
 	"latex",
 }
+
+local capabilities = nil
 local get_capabilities = function()
-	local capabilities = vim.lsp.protocol.make_client_capabilities()
-	return require("cmp_nvim_lsp").default_capabilities(capabilities)
+    if capabilities == nil then
+        capabilities = require('cmp_nvim_lsp').default_capabilities(
+            vim.lsp.protocol.make_client_capabilities()
+        )
+    end
+    return capabilities
 end
 
 return {
