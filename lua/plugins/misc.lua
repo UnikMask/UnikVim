@@ -64,5 +64,23 @@ return {
         lazy = true,
         dependencies = { "nvim-lua/plenary.nvim" },
         opts = {},
+    },
+	{
+		"folke/trouble.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		lazy = true,
+		opts = {},
+	},
+    {
+        "Dhanus3133/Leetbuddy.nvim",
+        dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+        lazy = true,
+        opts = {
+            domain = "com",
+            language = "py",
+        },
+        init = function ()
+            require('keymaps.misc').leetbuddy()
+        end
     }
 }

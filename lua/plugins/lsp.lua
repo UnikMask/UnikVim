@@ -1,5 +1,5 @@
 -- Function applied when the LSP is attached to a buffer.
-local lspconfig_ls = { "lua_ls", "cmake", "pylsp", "gopls" }
+local lspconfig_ls = { "lua_ls", "cmake", "pylsp", "gopls", "jsonls" }
 local ts_supported_langs = {
 	"lua",
 	"c",
@@ -64,9 +64,6 @@ return {
 			-- Set up LSP format wrapper
 			require("lsp-format").setup()
 
-			-- Get client capabilities, and add cmp-nvim-lsp's capabilities.
-			local capabilities = get_capabilities()
-
 			-- Language-wise configuration
 			local ls_config = {}
 			local lspconfig = require("lspconfig")
@@ -93,13 +90,13 @@ return {
 			for _, ls in pairs(lspconfig_ls) do
 				if ls_config[ls] == nil then
 					ls_config[ls] = {
-						capabilities = capabilities,
+						capabilities = get_capabilities(),
 						on_attach = function(client)
 							require("lsp-format").on_attach(client)
 						end,
 					}
 				else
-					ls_config[ls].capabilities = capabilities
+					ls_config[ls].capabilities = get_capabilities()
 				end
 				lspconfig[ls].setup(ls_config[ls])
 			end
@@ -136,7 +133,7 @@ return {
 		"simrat39/rust-tools.nvim",
 		lazy = true,
 		ft = { "rust" },
-		depedencies = {
+		dependencies = {
 			"neovim/nvim-lspconfig",
 		},
 		opts = {
@@ -223,11 +220,5 @@ return {
 			vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
 			require("nvim-treesitter.configs").setup(opts)
 		end,
-	},
-	{
-		"folke/trouble.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		lazy = true,
-		opts = {},
 	},
 }
