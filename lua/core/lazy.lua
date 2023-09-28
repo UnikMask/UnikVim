@@ -22,11 +22,11 @@ lazy.setup("plugins", {
     },
     install = {
         missing = true,
-        colorscheme = { 'iroh', 'habamax' },
+        colorscheme = { 'iroh', 'doom-one', 'habamax' },
     },
     dev = {
         path = '~/.config/nvim/local',
-        fallback = false,
+        fallback = true,
         patterns = {'UnikMask'},
     },
 })
