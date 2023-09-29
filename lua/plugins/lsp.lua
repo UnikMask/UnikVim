@@ -1,21 +1,5 @@
 -- Function applied when the LSP is attached to a buffer.
 local lspconfig_ls = { "lua_ls", "cmake", "pylsp", "gopls", "jsonls" }
-local ts_supported_langs = {
-	"lua",
-	"c",
-	"java",
-	"ron",
-	"python",
-	"vim",
-	"vimdoc",
-	"rust",
-	"cpp",
-	"go",
-	"cmake",
-	"org",
-	"html",
-	"latex",
-}
 
 local capabilities = nil
 local get_capabilities = function()
@@ -31,15 +15,7 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		lazy = true,
-		ft = {
-			"lua",
-			"python",
-			"cmake",
-			"docker",
-			"go",
-			"javascript",
-			"typescript",
-		},
+        event = "VeryLazy",
 		dependencies = {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
@@ -201,9 +177,8 @@ return {
             "folke/todo-comments.nvim",
 		},
 		lazy = true,
-		ft = ts_supported_langs,
+        event = "VeryLazy",
 		opts = {
-			ensure_installed = ts_supported_langs,
 			auto_install = true,
 			highlight = {
 				enable = true,
