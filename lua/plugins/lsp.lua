@@ -24,6 +24,7 @@ return {
 			"folke/neodev.nvim",
 			"hrsh7th/cmp-nvim-lsp",
 			"folke/trouble.nvim",
+            "ray-x/lsp_signature.nvim",
 		},
 		config = function()
 			-- Setup dependencies
@@ -152,4 +153,9 @@ return {
 			},
 		},
 	},
+    {
+        "ray-x/lsp_signature.nvim",
+        lazy = true,
+        opts = {},
+    },
 }
