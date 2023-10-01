@@ -82,5 +82,13 @@ return {
         init = function ()
             require('keymaps.misc').leetbuddy()
         end
-    }
+    },
+    {
+        "chrisgrieser/nvim-spider",
+        lazy = true,
+        opts = {},
+        init = function ()
+            require("keymaps.misc").nvimSpider()
+        end,
+    },
 }
