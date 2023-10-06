@@ -75,5 +75,10 @@ return {
         lazy = true,
         event = 'VeryLazy',
         opts = {},
-    }
+    },
+    {
+        "j-hui/fidget.nvim",
+        lazy = true,
+        opts = {},
+    },
 }
