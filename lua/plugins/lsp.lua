@@ -24,26 +24,6 @@ return {
 		end,
 	},
 	{
-		"mfussenegger/nvim-jdtls",
-		lazy = true,
-		ft = { "java" },
-		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",
-			"neovim/nvim-lspconfig",
-		},
-		config = function()
-			local start_java_lsp = function()
-				require("jdtls").start_or_attach(require("opts.lsp")["jdtls"])
-			end
-			vim.api.nvim_create_autocmd("FileType java", {
-				group = vim.api.nvim_create_augroup("NvimJDTLS", {}),
-				callback = function()
-					start_java_lsp()
-				end,
-			})
-		end,
-	},
-	{
 		"simrat39/rust-tools.nvim",
 		lazy = true,
 		ft = { "rust" },

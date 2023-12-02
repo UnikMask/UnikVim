@@ -40,11 +40,7 @@ opts.lspconfig = function()
 	}
 end
 
-opts.jdtls = {
-	cmd = { "jdtls" },
-	root_dir = vim.fs.dirname(vim.fs.find({ "gradlew", ".git", "mvnw" }, { upward = true })[1]),
-}
-
+-- Rust Options
 opts.rust = function()
 	return {
 		server = {
