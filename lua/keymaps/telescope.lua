@@ -6,7 +6,10 @@ local bt = function()
 	return require("telescope.builtin")
 end
 local sfp_arg = function()
-	return { cwd = vim.api.nvim_list_runtime_paths()[1] }
+	return {
+		cwd = vim.api.nvim_list_runtime_paths()[1],
+		hidden = true,
+	}
 end
 
 wk.register({
@@ -14,7 +17,7 @@ wk.register({
 		name = "Find",
 		f = {
 			function()
-				require("telescope").extensions.pathogen.find_files()
+				require("telescope").extensions.pathogen.find_files({hidden = true})
 			end,
 			"Files in Directory",
 		},
