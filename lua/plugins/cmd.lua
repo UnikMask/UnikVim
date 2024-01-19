@@ -15,9 +15,10 @@ return {
             },
             templates = {
                 "builtin",
+                "user.gradle_build",
+                "user.org_latex_export_to_pdf",
                 "user.project_build",
                 "user.project_config",
-                "user.org_latex_export_to_pdf"
             },
         },
         config = function(_, opts)
