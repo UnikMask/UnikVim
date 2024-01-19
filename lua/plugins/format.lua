@@ -26,12 +26,12 @@ return {
         end,
     },
     {
-        "jose-elias-alvarez/null-ls.nvim",
+        "nvimtools/none-ls.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "j-hui/fidget.nvim",
         },
-        ft = { "lua" },
+        event = "VeryLazy",
         config = function()
             local null_ls = require("null-ls")
             null_ls.setup({
@@ -39,6 +39,9 @@ return {
                     null_ls.builtins.formatting.stylua,
                     null_ls.builtins.formatting.black,
                     null_ls.builtins.formatting.isort,
+                    null_ls.builtins.code_actions.gitsigns,
+                    null_ls.builtins.completion.luasnip,
+                    null_ls.builtins.completion.spell,
                 },
             })
         end,
