@@ -2,6 +2,24 @@ local wk = require("which-key")
 local misc = {}
 local prefix = { prefix = "<leader>" }
 
+-- Neogit setup
+misc.neogit = function()
+    local neogit = function()
+        return require("neogit")
+    end
+    wk.register({
+        g = {
+            name = "Git",
+            g = {
+                function()
+                    neogit().open()
+                end,
+                "Git status",
+            },
+        },
+    }, prefix)
+end
+
 -- Fugitive Setup
 misc.fugitive = function()
     local command = function(cmd)
@@ -12,18 +30,9 @@ misc.fugitive = function()
     end
     wk.register({
         g = {
-            name = "Git",
-            g = {
-                command("Git"),
-                "Toggle Git",
-            },
             b = {
                 command("Git blame"),
                 "Toggle Git blame",
-            },
-            c = {
-                command("Git commit"),
-                "Toggle Git",
             },
         },
     }, prefix)
