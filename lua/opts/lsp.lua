@@ -2,6 +2,8 @@ local capabilities
 local get_capabilities = function()
     if capabilities == nil then
         capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+        capabilities.offsetEncoding = "utf-8"
+        capabilities.textDocument.semanticHighlighting = true
     end
     return capabilities
 end
