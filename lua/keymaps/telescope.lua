@@ -17,6 +17,12 @@ wk.register({
         name = "Find",
         f = {
             function()
+                require("telescope").extensions.pathogen.find_files({ hidden = false })
+            end,
+            "Files in Directory",
+        },
+        F = {
+            function()
                 require("telescope").extensions.pathogen.find_files({ hidden = true })
             end,
             "Files in Directory",
@@ -41,6 +47,12 @@ wk.register({
                 bt().live_grep()
             end,
             "String in document",
+        },
+        t = {
+            function()
+                bt().tags()
+            end,
+            "Project tags",
         },
         b = {
             function()

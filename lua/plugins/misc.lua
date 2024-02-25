@@ -65,12 +65,12 @@ return {
         dependencies = { "nvim-lua/plenary.nvim" },
         opts = {},
     },
-	{
-		"folke/trouble.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		lazy = true,
-		opts = {},
-	},
+    {
+        "folke/trouble.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        lazy = true,
+        opts = {},
+    },
     {
         "Dhanus3133/Leetbuddy.nvim",
         dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
@@ -79,7 +79,7 @@ return {
             domain = "com",
             language = "py",
         },
-        init = function ()
+        init = function()
             require('keymaps.misc').leetbuddy()
         end
     },
@@ -87,8 +87,16 @@ return {
         "chrisgrieser/nvim-spider",
         lazy = true,
         opts = {},
-        init = function ()
+        init = function()
             require("keymaps.misc").nvimSpider()
         end,
     },
+    {
+        "preservim/tagbar",
+        lazy = true,
+        cmd = { "TagbarToggle" },
+        init = function()
+            require("keymaps.misc").tagbar()
+        end
+    }
 }

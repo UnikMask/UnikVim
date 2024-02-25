@@ -245,4 +245,19 @@ misc.nvimSpider = function()
     })
 end
 
+-- Tagbar Setup
+misc.tagbar = function()
+    wk.register({
+        c = {
+            T = {
+                function()
+                    require("lazy").load({ plugins = { "tagbar" } })
+                    vim.cmd("TagbarToggle")
+                end,
+                "Toggle tags",
+            },
+        },
+    }, prefix)
+end
+
 return misc
