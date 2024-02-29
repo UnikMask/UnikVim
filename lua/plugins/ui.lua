@@ -52,6 +52,7 @@ return {
     {
         'romgrk/barbar.nvim',
         lazy = true,
+        enabled = false,
         event = 'VeryLazy',
         dependencies = {
             'nvim-tree/nvim-web-devicons',
