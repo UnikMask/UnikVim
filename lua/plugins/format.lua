@@ -6,7 +6,7 @@ return {
             "folke/todo-comments.nvim",
         },
         lazy = true,
-        event = "VeryLazy",
+        event = "BufRead",
         opts = {
             auto_install = true,
             highlight = {
