@@ -1,7 +1,7 @@
 return {
     {
         "williamboman/mason.nvim",
-        lazy = true,
+        lazy = false,
         build = ":MasonUpdate",
         opts = require("opts.lsp")["mason"],
     },

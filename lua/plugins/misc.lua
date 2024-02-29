@@ -10,7 +10,7 @@ return {
             'UnikMask/iroh-vim',
         },
         lazy = true,
-        event = 'VeryLazy',
+        event = 'VimEnter',
         module = true,
         opts = {
             timeout = 100,
@@ -25,8 +25,7 @@ return {
     {
         'folke/which-key.nvim',
         opts = {},
-        lazy = true,
-        event = 'VeryLazy',
+        lazy = false,
         init = function()
             vim.o.timeout = true
             vim.o.timeoutlen = 300
