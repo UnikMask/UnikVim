@@ -20,7 +20,7 @@ return {
                     lualine_x = {
                         {
                             'diagnostics',
-                            sources = { 'nvim_diagnostic', 'coc' },
+                            sources = { 'nvim_diagnostic' },
                             symbols = { error = ' ', warn = ' ', info = ' ', hint = '󰌶 ' },
                             colored = true,
                             update_in_insert = true,
@@ -50,36 +50,9 @@ return {
         end
     },
     {
-        'romgrk/barbar.nvim',
-        lazy = true,
-        enabled = false,
-        event = 'VeryLazy',
-        dependencies = {
-            'nvim-tree/nvim-web-devicons',
-        },
-        opts = {
-            animation = true,
-            auto_hide = true,
-            separator = { left = '▎', right = '' },
-            icons = {
-                button = '',
-            },
-        },
-        init = function() vim.g.barbar_auto_setup = false end,
-        config = function(_, opts)
-            require('barbar').setup(opts)
-            require('keymaps.barbar')
-        end,
-    },
-    {
         'stevearc/dressing.nvim',
         lazy = true,
         event = 'VeryLazy',
-        opts = {},
-    },
-    {
-        "j-hui/fidget.nvim",
-        lazy = true,
         opts = {},
     },
 }
