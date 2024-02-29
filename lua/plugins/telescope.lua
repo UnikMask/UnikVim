@@ -7,10 +7,7 @@ return {
             "nvim-lua/plenary.nvim",
             "ahmedkhalf/project.nvim",
             "rmagatti/auto-session",
-            { "brookhong/telescope-pathogen.nvim" },
-            "tsakirist/telescope-lazy.nvim",
             { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-            "nvim-telescope/telescope-file-browser.nvim",
         },
         lazy = true,
         cmd = { "Telescope" },
@@ -43,13 +40,10 @@ return {
                 end
             end
             load_extensions({
-                "lazy",
                 "fzf",
-                "file_browser",
                 "projects",
                 "notify",
                 "session-lens",
-                "pathogen",
             })
         end,
     },

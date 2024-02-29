@@ -10,6 +10,7 @@ return {
             "lukas-reineke/lsp-format.nvim",
             "hrsh7th/cmp-nvim-lsp",
             "folke/trouble.nvim",
+            "nvimtools/none-ls.nvim",
             "ray-x/lsp_signature.nvim",
             "folke/neodev.nvim",
         },

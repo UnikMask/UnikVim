@@ -13,23 +13,29 @@ local sfp_arg = function()
 end
 
 wk.register({
+    x = {
+        function()
+            bt().commands()
+        end,
+        "Show commands"
+    },
     f = {
         name = "Find",
         f = {
             function()
-                require("telescope").extensions.pathogen.find_files({ hidden = false })
+                bt().find_files({ hidden = false })
             end,
             "Files in Directory",
         },
         F = {
             function()
-                require("telescope").extensions.pathogen.find_files({ hidden = true })
+                bt().find_files({ hidden = true })
             end,
-            "Files in Directory",
+            "File Picker",
         },
         ["~"] = {
             function()
-                require("telescope").extensions.pathogen.find_files({
+                bt().find_files({
                     cwd = "~",
                     hidden = true,
                 })
@@ -84,6 +90,18 @@ wk.register({
                 require("auto-session.session-lens").search_session()
             end,
             "Sessions",
+        },
+        R = {
+            function()
+                bt().registers({})
+            end,
+            "Registers"
+        },
+        c = {
+            function()
+                bt().colorscheme({})
+            end,
+            "Select Colorscheme",
         },
         H = {
             function()
