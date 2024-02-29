@@ -19,6 +19,12 @@ wk.register({
         end,
         "Show commands"
     },
+    T = {
+        function()
+            bt().builtin()
+        end,
+        "Telescope Builtins"
+    },
     f = {
         name = "Find",
         f = {
