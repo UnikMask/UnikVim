@@ -3,7 +3,6 @@ return {
         'glepnir/dashboard-nvim',
         event = 'VimEnter',
         dependencies = {
-            'rmagatti/auto-session',
             { 'nvim-tree/nvim-web-devicons' }
         },
         opts = {
