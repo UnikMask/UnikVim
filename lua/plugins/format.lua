@@ -44,8 +44,4 @@ return {
             })
         end,
     },
-    {
-        "udalov/kotlin-vim",
-        event = "VeryLazy",
-    }
 }
