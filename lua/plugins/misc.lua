@@ -41,7 +41,7 @@ return {
     {
         "kylechui/nvim-surround",
         lazy = true,
-        event = "VeryLazy",
+        event = "InsertEnter",
         opts = {},
     },
     {
