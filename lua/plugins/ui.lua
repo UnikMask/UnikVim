@@ -2,7 +2,7 @@
 return {
     {
         "nvim-lualine/lualine.nvim",
-        event = 'BufEnter',
+        event = 'VimEnter',
         config = function()
             require("lualine").setup {
                 options = {
