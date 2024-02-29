@@ -21,7 +21,7 @@ misc.neogit = function()
 end
 
 -- Fugitive Setup
-misc.fugitive = function()
+misc.gitsigns = function()
     local command = function(cmd)
         return function()
             require("lazy").load({ plugins = { "vim-fugitive" } })
@@ -31,7 +31,7 @@ misc.fugitive = function()
     wk.register({
         g = {
             b = {
-                command("Git blame"),
+                command("Gitsigns toggle_current_line_blame"),
                 "Toggle Git blame",
             },
         },

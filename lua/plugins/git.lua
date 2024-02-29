@@ -26,16 +26,15 @@ return {
     {
         "lewis6991/gitsigns.nvim",
         lazy = true,
-        event = "VeryLazy",
+        event = "BufRead",
+        init = function()
+            require("keymaps.misc").gitsigns()
+        end,
         opts = {
             signcolumn = true,
+            current_line_blame_opts = {
+                delay = 50,
+            }
         },
-    },
-    {
-        "tpope/vim-fugitive",
-        cmd = { "Git blame" },
-        init = function()
-            require("keymaps.misc").fugitive()
-        end,
     },
 }
