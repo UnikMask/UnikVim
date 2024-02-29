@@ -248,8 +248,8 @@ end
 -- Tagbar Setup
 misc.tagbar = function()
     wk.register({
-        c = {
-            T = {
+        o = {
+            r = {
                 function()
                     require("lazy").load({ plugins = { "tagbar" } })
                     vim.cmd("TagbarToggle")
