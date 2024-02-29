@@ -4,6 +4,7 @@ return {
         dependencies = {
             'nvim-lua/plenary.nvim',
             'nvim-telescope/telescope.nvim',
+            'sindrets/diffview.nvim',
             'ahmedkhalf/project.nvim',
         },
         lazy = true,
