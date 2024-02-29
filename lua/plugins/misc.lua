@@ -14,12 +14,6 @@ return {
         opts = {},
     },
     {
-        'j-hui/fidget.nvim',
-        tag = 'legacy',
-        lazy = true,
-        opts = {},
-    },
-    {
         "rcarriga/nvim-notify",
         dependencies = {
             'UnikMask/iroh-vim',

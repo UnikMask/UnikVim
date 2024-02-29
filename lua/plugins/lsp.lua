@@ -52,32 +52,4 @@ return {
             require("clangd_extensions").setup(require("opts.lsp")["clangd"]())
         end
     },
-    {
-        "folke/neodev.nvim",
-        dependencies = {
-            "neovim/nvim-lspconfig",
-        },
-        lazy = true,
-        opts = {},
-    },
-    {
-        "ray-x/lsp_signature.nvim",
-        lazy = true,
-        opts = {},
-    },
-    {
-        "williamboman/mason.nvim",
-        lazy = true,
-        opts = require("opts.lsp")["mason"],
-    },
-    {
-        "williamboman/mason-lspconfig.nvim",
-        lazy = true,
-        opts = require("opts.lsp")["mason_lspconfig"],
-    },
-    {
-        "lukas-reineke/lsp-format.nvim",
-        lazy = true,
-        opts = {},
-    },
 }
