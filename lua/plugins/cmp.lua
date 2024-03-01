@@ -16,6 +16,8 @@ return {
         config = function()
             require("luasnip/loaders/from_vscode").lazy_load()
             require("cmp").setup(require("opts.cmp")["nvim-cmp"]())
+            require("cmp").setup.cmdline({ '/', '?' }, require("opts.cmp").buff_search())
+            require("cmp").setup.cmdline(':', require("opts.cmp").cmdline_search())
         end
     }
 }
