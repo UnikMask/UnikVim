@@ -3,7 +3,6 @@ return {
         "nvim-tree/nvim-tree.lua",
         dependencies = {
             "nvim-tree/nvim-web-devicons",
-            "ahmedkhalf/project.nvim",
         },
         lazy = true,
         cmd = {
@@ -25,6 +24,7 @@ return {
     {
         "ahmedkhalf/project.nvim",
         lazy = true,
+        event = "VeryLazy",
         opts = {
             detection_methods = {
                 "lsp",
@@ -40,7 +40,7 @@ return {
         lazy = true,
         event = "BufRead",
         opts = {
-            log_level = vim.log.levels.INFO,
+            log_level = vim.log.levels.WARN,
             auto_session_enabled = false,
             auto_save_enabled = true,
             auto_restore_enabled = false,
@@ -48,9 +48,16 @@ return {
             auto_session_enable_last_session = vim.loop.cwd() == vim.loop.os_homedir(),
             pre_save_cmds = {
                 function()
+                    -- Close Nvim-Tree
                     local ok = require("lazy.core.config").plugins["nvim-tree.lua"]._.loaded ~= nil
                     if ok then
                         require("nvim-tree.api").tree.close()
+                    end
+
+                    -- Close Overseer page
+                    ok = require("lazy.core.config").plugins["overseer"]._.loaded ~= nil
+                    if ok then
+                        require("overseer").close()
                     end
                 end,
             },

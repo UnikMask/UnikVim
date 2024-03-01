@@ -5,7 +5,6 @@ return {
         dependencies = {
             "rcarriga/nvim-notify",
             "nvim-lua/plenary.nvim",
-            "ahmedkhalf/project.nvim",
             "rmagatti/auto-session",
             { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
         },
@@ -18,11 +17,7 @@ return {
             -- Load Telescope
             local telescope = require("telescope")
             telescope.setup({
-                extensions = {
-                    ["pathogen"] = {
-                        theme = 'ivy',
-                    },
-                },
+                extensions = {},
                 pickers = {
                     find_files = {
                         theme = "ivy",
