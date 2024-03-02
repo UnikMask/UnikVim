@@ -60,7 +60,7 @@ return {
             require('orgmode').setup_ts_grammar()
             require('nvim-treesitter.configs').setup({
                 highlight = {
-                    enabled = true,
+                    enable = true,
                     additional_vim_regex_highlighting = { 'org' },
                 },
                 ensure_installed = { 'org' },

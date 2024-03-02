@@ -21,6 +21,9 @@ vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 vim.o.guifont = "FiraCode Nerd Font Mono 12"
 vim.g.barbar_auto_setup = false
 
+vim.opt.conceallevel = 2
+vim.opt.concealcursor = 'nc'
+
 -- Load Lazy
 require("core.lazy")
 
