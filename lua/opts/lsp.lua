@@ -36,14 +36,6 @@ opts.lspconfig = function()
             },
             capabilities = get_capabilities(),
         },
-        ["clangd"] = {
-            capabilities = get_capabilities(),
-            on_attach = function(client, bufnr)
-                require("clangd_extensions.inlay_hints").setup_autocmd()
-                require("clangd_extensions.inlay_hints").set_inlay_hints()
-                on_attach(client, bufnr)
-            end,
-        },
         ["cmake"] = { capabilities = get_capabilities(), on_attach = on_attach },
         ["pylsp"] = { capabilities = get_capabilities(), on_attach = on_attach },
         ["gopls"] = { capabilities = get_capabilities(), on_attach = on_attach },
@@ -58,6 +50,17 @@ opts.rust = function()
             capabilities = get_capabilities(),
             on_attach = on_attach,
         },
+    }
+end
+
+opts.lsp_clangd = function()
+    return {
+        capabilities = get_capabilities(),
+        on_attach = function(client, bufnr)
+            require("clangd_extensions.inlay_hints").setup_autocmd()
+            require("clangd_extensions.inlay_hints").set_inlay_hints()
+            on_attach(client, bufnr)
+        end,
     }
 end
 
@@ -82,7 +85,16 @@ opts.clangd = function()
                 TemplateTemplateParm = "",
                 TemplateParamObject = "",
             },
+            highlights = {
+                details = "Comment",
+            }
         },
+        memory_usage = {
+            border = "none",
+        },
+        symbol_info = {
+            border = "none",
+        }
     }
 end
 

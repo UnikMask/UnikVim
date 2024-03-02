@@ -51,6 +51,7 @@ return {
         },
         config = function()
             require("clangd_extensions").setup(require("opts.lsp")["clangd"]())
+            require("lspconfig")["clangd"].setup(require("opts.lsp")["lsp_clangd"]())
         end
     },
 }
