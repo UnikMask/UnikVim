@@ -44,7 +44,7 @@ misc.nvimtree = function()
         return require("nvim-tree.api")
     end
     wk.register({
-        o = {
+        e = {
             name = "Open",
             t = {
                 function()
@@ -91,19 +91,22 @@ end
 -- Orgmode setup
 misc.orgmode = function()
     wk.register({
-        a = {
-            function()
-                require("orgmode").action("agenda.prompt", { opts = { buffer = false } })
-            end,
-            "org agenda",
+        o = {
+            name = "Orgmode",
+            a = {
+                function()
+                    require("orgmode").action("agenda.prompt", { opts = { buffer = false } })
+                end,
+                "org agenda",
+            },
+            c = {
+                function()
+                    require("orgmode").action("capture.prompt", { opts = { buffer = false } })
+                end,
+                "org capture",
+            },
         },
-        c = {
-            function()
-                require("orgmode").action("capture.prompt", { opts = { buffer = false } })
-            end,
-            "org capture",
-        },
-    }, { prefix = "<leader>o" })
+    }, { prefix = "<leader>" })
 end
 
 misc.notify = function()
@@ -248,7 +251,7 @@ end
 -- Tagbar Setup
 misc.tagbar = function()
     wk.register({
-        o = {
+        e = {
             r = {
                 function()
                     require("lazy").load({ plugins = { "tagbar" } })
