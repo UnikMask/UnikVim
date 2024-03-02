@@ -42,31 +42,27 @@ opts["nvim-cmp"] = function()
                 behavior = cmp.ConfirmBehavior.Replace,
                 select = false,
             }),
-            ["<C-e>"] = cmp.mapping(function(_)
+            ["<C-i>"] = cmp.mapping(function(_)
                 cmp.abort()
             end, { "i", "s" }),
-            ["<C-f>"] = cmp.mapping(function(_)
+            ["<C-j>"] = cmp.mapping(function(_)
                 cmp.scroll_docs(4)
             end, { "i", "s" }),
-            ["<C-b>"] = cmp.mapping(function(_)
+            ["<C-k>"] = cmp.mapping(function(_)
                 cmp.scroll_docs(-4)
             end, { "i", "s" }),
-            ["<Tab>"] = cmp.mapping(function(fallback)
+            ["<C-m>"] = cmp.mapping(function(_)
                 if cmp.visible() then
                     cmp.select_next_item()
                 elseif luasnip.expand_or_jumpable() then
                     luasnip.expand_or_jump()
-                else
-                    fallback()
                 end
             end, { "i", "s" }),
-            ["<C-Tab>"] = cmp.mapping(function(fallback)
+            ["<C-n>"] = cmp.mapping(function(_)
                 if cmp.visible() then
                     cmp.select_prev_item()
                 elseif luasnip.jumpable(-1) then
                     luasnip.jump(-1)
-                else
-                    fallback()
                 end
             end, { "i", "s" }),
         },
