@@ -15,6 +15,22 @@ return {
             "folke/neodev.nvim",
         },
         config = function()
+            -- Functions for LSP server set up
+            local capabilities
+            local get_capabilities = function()
+                if capabilities == nil then
+                    capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol
+                    .make_client_capabilities())
+                    capabilities.offsetEncoding = "utf-8"
+                    capabilities.textDocument.semanticHighlighting = true
+                end
+                return capabilities
+            end
+
+            local on_attach = function(client, bufnr)
+                return require("lsp-format").on_attach(client, bufnr)
+            end
+
             -- Set up LSP format wrapper
             require("lsp-format").setup()
             local lspconfigs = require("opts.lsp").lspconfig()
@@ -25,6 +41,11 @@ return {
                         require("lspconfig")[server_name].setup(lspconfigs[server_name])
                     elseif disabled[server_name] == true then
                         require("lspconfig")[server_name].setup({})
+                    else
+                        require("lspconfig")[server_name].setup({
+                            on_attach = on_attach,
+                            capabilities = get_capabilities()
+                        })
                     end
                 end
             }

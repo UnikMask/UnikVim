@@ -33,6 +33,9 @@ if ok then
     mason.setup()
 end
 
+-- Custom filetype support
+vim.filetype.add({ extension = { templ = "templ" } })
+
 -- Load Independent keymaps
 require('keymaps.buffers')
 

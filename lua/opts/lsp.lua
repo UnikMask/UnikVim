@@ -12,6 +12,21 @@ local on_attach = function(client, bufnr)
     return require("lsp-format").on_attach(client, bufnr)
 end
 
+local templ_format = function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    local filename = vim.api.nvim_buf_get_name(bufnr)
+    local cmd = "templ fmt " .. vim.fn.shellescape(filename)
+
+    vim.fn.jobstart(cmd, {
+        on_exit = function()
+            -- Reload the buffer only if it's still the current buffer
+            if vim.api.nvim_get_current_buf() == bufnr then
+                vim.cmd("e!")
+            end
+        end,
+    })
+end
+
 local opts = {}
 opts.lspconfig_disable = { ["rust_analyzer"] = false, ["jdtls"] = false }
 opts.lspconfig = function()
@@ -36,10 +51,30 @@ opts.lspconfig = function()
             },
             capabilities = get_capabilities(),
         },
-        ["cmake"] = { capabilities = get_capabilities(), on_attach = on_attach },
-        ["pylsp"] = { capabilities = get_capabilities(), on_attach = on_attach },
-        ["gopls"] = { capabilities = get_capabilities(), on_attach = on_attach },
-        ["jsonls"] = { capabilities = get_capabilities(), on_attach = on_attach },
+        ["tailwindcss"] = {
+            capabilities = get_capabilities(),
+            on_attach = on_attach,
+            filetypes = { "astro", "templ", "javascript", "typescript", "react" },
+            init_options = { userLanguages = { templ = "html" }, documentFormatting = false },
+        },
+        ["htmx-lsp"] = {
+            capabilities = get_capabilities(),
+            on_attach = on_attach,
+            filetypes = { "html", "templ" },
+            init_options = { documentFormatting = false },
+        },
+        ["html-lsp"] = {
+            capabilities = get_capabilities(),
+            on_attach = on_attach,
+            filetypes = { "html", "templ" },
+            init_options = { documentFormatting = false },
+        },
+        ["templ"] = {
+            capabilities = get_capabilities(),
+            on_attach = function(client, bufnr)
+                return require("lsp-format").on_attach(client, bufnr)
+            end,
+        },
     }
 end
 
@@ -87,14 +122,14 @@ opts.clangd = function()
             },
             highlights = {
                 details = "Comment",
-            }
+            },
         },
         memory_usage = {
             border = "none",
         },
         symbol_info = {
             border = "none",
-        }
+        },
     }
 end
 
