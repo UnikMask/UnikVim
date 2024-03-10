@@ -95,8 +95,8 @@ end
 opts.buff_search = function()
     local cmp = require("cmp")
     return {
-        mapping = opts["nvim-cmp"]().mapping,
         sources = { {
+            mapping = cmp.mapping.preset.cmdline(),
             name = "buffer",
         } },
     }
