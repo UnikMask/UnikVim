@@ -38,11 +38,14 @@ opts["nvim-cmp"] = function()
             end,
         },
         mapping = {
+            ["<Tab>"] = cmp.mapping(function(fallback)
+                fallback()
+            end),
             ["<CR>"] = cmp.mapping.confirm({
                 behavior = cmp.ConfirmBehavior.Replace,
                 select = false,
             }),
-            ["<C-i>"] = cmp.mapping(function(_)
+            ["<C-l>"] = cmp.mapping(function(_)
                 cmp.abort()
             end, { "i", "s" }),
             ["<C-j>"] = cmp.mapping(function(_)
@@ -92,7 +95,7 @@ end
 opts.buff_search = function()
     local cmp = require("cmp")
     return {
-        mapping = cmp.mapping.preset.cmdline(),
+        mapping = opts["nvim-cmp"]().mapping,
         sources = { {
             name = "buffer",
         } },
