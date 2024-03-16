@@ -1,30 +1,19 @@
-local capabilities
 local get_capabilities = function()
-    if capabilities == nil then
-        capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-        capabilities.offsetEncoding = "utf-8"
-        capabilities.textDocument.semanticHighlighting = true
-    end
+    local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+    capabilities.offsetEncoding = "utf-8"
+    capabilities.textDocument.semanticHighlighting = true
     return capabilities
+end
+
+local get_capabilities_no_format = function()
+    local capabilities_no_format = get_capabilities()
+    capabilities_no_format.textDocument.formatting = false
+    capabilities_no_format.documentFormattingProvider = false
+    return capabilities_no_format
 end
 
 local on_attach = function(client, bufnr)
     return require("lsp-format").on_attach(client, bufnr)
-end
-
-local templ_format = function()
-    local bufnr = vim.api.nvim_get_current_buf()
-    local filename = vim.api.nvim_buf_get_name(bufnr)
-    local cmd = "templ fmt " .. vim.fn.shellescape(filename)
-
-    vim.fn.jobstart(cmd, {
-        on_exit = function()
-            -- Reload the buffer only if it's still the current buffer
-            if vim.api.nvim_get_current_buf() == bufnr then
-                vim.cmd("e!")
-            end
-        end,
-    })
 end
 
 local opts = {}
@@ -52,28 +41,26 @@ opts.lspconfig = function()
             capabilities = get_capabilities(),
         },
         ["tailwindcss"] = {
-            capabilities = get_capabilities(),
-            on_attach = on_attach,
+            capabilities = get_capabilities_no_format(),
             filetypes = { "astro", "templ", "javascript", "typescript", "react" },
             init_options = { userLanguages = { templ = "html" }, documentFormatting = false },
         },
         ["htmx-lsp"] = {
-            capabilities = get_capabilities(),
-            on_attach = on_attach,
+            capabilities = get_capabilities_no_format(),
             filetypes = { "html", "templ" },
             init_options = { documentFormatting = false },
         },
         ["html-lsp"] = {
-            capabilities = get_capabilities(),
-            on_attach = on_attach,
+            capabilities = get_capabilities_no_format(),
             filetypes = { "html", "templ" },
-            init_options = { documentFormatting = false },
+            init_options = { provideFormatter = false },
+        },
+        ["sqls"] = {
+            capabilities = get_capabilities_no_format(),
         },
         ["templ"] = {
             capabilities = get_capabilities(),
-            on_attach = function(client, bufnr)
-                return require("lsp-format").on_attach(client, bufnr)
-            end,
+            on_attach = on_attach,
         },
     }
 end
