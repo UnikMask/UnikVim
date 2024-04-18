@@ -12,6 +12,16 @@ local sfp_arg = function()
     }
 end
 
+local man_pages_nums = { name = "Man pages" }
+for i = 1, 8 do
+    man_pages_nums[tostring(i)] = {
+        function()
+            bt().man_pages({ sections = { tostring(i) } })
+        end,
+        "Section " .. tostring(i)
+    }
+end
+
 wk.register({
     x = {
         function()
@@ -24,6 +34,23 @@ wk.register({
             bt().builtin()
         end,
         "Telescope Builtins"
+    },
+    h = {
+        name = "Help",
+        h = {
+            function()
+                bt().help_tags()
+            end,
+            "Neovim Help Tags",
+
+        },
+        M = {
+            function()
+                bt().man_pages({ sections = { "ALL" } })
+            end,
+            "All man Pages"
+        },
+        m = man_pages_nums
     },
     f = {
         name = "Find",
@@ -72,12 +99,6 @@ wk.register({
             end,
             "Buffers",
         },
-        h = {
-            function()
-                bt().help_tags()
-            end,
-            "Neovim Help Tags",
-        },
         r = {
             function()
                 bt().oldfiles()
@@ -109,11 +130,5 @@ wk.register({
             end,
             "Select Colorscheme",
         },
-        H = {
-            function()
-                bt().man_pages()
-            end,
-            "Man Pages",
-        }
     },
 }, { prefix = "<leader>" })
