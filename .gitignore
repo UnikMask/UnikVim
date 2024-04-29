@@ -1,4 +1,5 @@
 .luarc.json
 local/
+local
 .netrwhist
 lazy-lock.json
