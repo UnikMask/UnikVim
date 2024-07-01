@@ -17,7 +17,7 @@ local on_attach = function(client, bufnr)
 end
 
 local opts = {}
-opts.lspconfig_disable = { ["rust_analyzer"] = false, ["jdtls"] = false }
+opts.lspconfig_disable = { ["rust_analyzer"] = true, ["jdtls"] = false }
 opts.lspconfig = function()
     return {
         ["lua_ls"] = {

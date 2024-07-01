@@ -20,7 +20,7 @@ return {
             local get_capabilities = function()
                 if capabilities == nil then
                     capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol
-                    .make_client_capabilities())
+                        .make_client_capabilities())
                     capabilities.offsetEncoding = "utf-8"
                     capabilities.textDocument.semanticHighlighting = true
                 end
@@ -40,7 +40,7 @@ return {
                     if lspconfigs[server_name] ~= nil then
                         require("lspconfig")[server_name].setup(lspconfigs[server_name])
                     elseif disabled[server_name] == true then
-                        require("lspconfig")[server_name].setup({})
+                        -- require("lspconfig")[server_name].setup({})
                     else
                         require("lspconfig")[server_name].setup({
                             on_attach = on_attach,
@@ -52,15 +52,9 @@ return {
         end,
     },
     {
-        "simrat39/rust-tools.nvim",
-        lazy = true,
-        ft = { "rust" },
-        dependencies = {
-            "neovim/nvim-lspconfig",
-        },
-        config = function()
-            require("rust-tools").setup(require("opts.lsp")["rust"]())
-        end
+        "mrcjkb/rustaceanvim",
+        version = '^4',
+        lazy = false
     },
     {
         "p00f/clangd_extensions.nvim",
