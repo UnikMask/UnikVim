@@ -25,27 +25,31 @@ local find_exec = function()
     end)
 end
 
+
 opts.dap = function()
+    local c_configs = {
+        {
+            name = "Launch (gdb)",
+            type = "gdb",
+            request = "launch",
+            program = find_exec,
+            cwd = "${workspaceFolder}/build",
+        },
+        {
+            name = 'Launch (lldb-vscode)',
+            type = 'lldb',
+            request = 'launch',
+            program = find_exec,
+            cwd = '${workspaceFolder}/build',
+            stopOnEntry = false,
+            args = {},
+        },
+
+    }
     return {
         configurations = {
-            cpp = {
-                {
-                    name = "Launch (gdb)",
-                    type = "gdb",
-                    request = "launch",
-                    program = find_exec,
-                    cwd = "${workspaceFolder}/build",
-                },
-                {
-                    name = 'Launch (lldb-vscode)',
-                    type = 'lldb',
-                    request = 'launch',
-                    program = find_exec,
-                    cwd = '${workspaceFolder}/build',
-                    stopOnEntry = false,
-                    args = {},
-                },
-            }
+            cpp = c_configs,
+            c = c_configs
         },
         adapters = {
             gdb = {
