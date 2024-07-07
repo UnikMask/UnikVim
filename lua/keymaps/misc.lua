@@ -22,17 +22,13 @@ end
 
 -- Fugitive Setup
 misc.gitsigns = function()
-    local command = function(cmd)
-        return function()
-            require("lazy").load({ plugins = { "vim-fugitive" } })
-            vim.cmd(cmd)
-        end
-    end
     wk.register({
         g = {
             b = {
-                command("Gitsigns toggle_current_line_blame"),
-                "Toggle Git blame",
+                function ()
+                    vim.cmd("Gitsigns toggle_current_line_blame")
+                end,
+                "Toggle Git blame"
             },
         },
     }, prefix)
