@@ -2,7 +2,7 @@ local dap = function()
     return require("dap")
 end
 local ui = function()
-    return require("dap")
+    return require("dapui")
 end
 local widgets = function()
     return require("dap.ui.widgets")
