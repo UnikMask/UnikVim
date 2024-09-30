@@ -7,10 +7,10 @@ return {
     {
         "rcarriga/nvim-notify",
         dependencies = {
-            'UnikMask/iroh-vim',
+            "UnikMask/iroh-vim",
         },
         lazy = true,
-        event = 'VimEnter',
+        event = "VimEnter",
         module = true,
         opts = {
             timeout = 100,
@@ -18,18 +18,18 @@ return {
             top_down = true,
         },
         config = function(_, opts)
-            require('notify').setup(opts)
-            vim.notify = require('notify')
-        end
+            require("notify").setup(opts)
+            vim.notify = require("notify")
+        end,
     },
     {
-        'folke/which-key.nvim',
+        "folke/which-key.nvim",
         opts = {},
         lazy = false,
         init = function()
             vim.o.timeout = true
             vim.o.timeoutlen = 300
-        end
+        end,
     },
     {
         "numToStr/Comment.nvim",
@@ -64,8 +64,8 @@ return {
             language = "py",
         },
         init = function()
-            require('keymaps.misc').leetbuddy()
-        end
+            require("keymaps.misc").leetbuddy()
+        end,
     },
     {
         "chrisgrieser/nvim-spider",
@@ -81,7 +81,7 @@ return {
         cmd = { "TagbarToggle" },
         init = function()
             require("keymaps.misc").tagbar()
-        end
+        end,
     },
     {
         "rareitems/anki.nvim",
