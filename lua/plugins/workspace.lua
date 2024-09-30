@@ -38,11 +38,7 @@ return {
     },
     {
         "rmagatti/auto-session",
-        dependencies = {
-            "nvim-telescope/telescope.nvim"
-        },
-        lazy = true,
-        event = "VeryLazy",
+        lazy = false,
         opts = {
             log_level = vim.log.levels.WARN,
             auto_save = true,
@@ -69,7 +65,7 @@ return {
                 end,
             },
             session_lens = {
-                load_on_setup = true,
+                load_on_setup = false,
                 theme_conf = { border = true },
                 previewer = true,
             },

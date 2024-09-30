@@ -5,7 +5,6 @@ return {
         dependencies = {
             "rcarriga/nvim-notify",
             "nvim-lua/plenary.nvim",
-            "rmagatti/auto-session",
             { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release' },
         },
         lazy = true,
@@ -31,9 +30,6 @@ return {
                     },
                 },
             })
-
-            -- Setup extensions
-            require("auto-session").setup_session_lens()
 
             -- Load Telescope extensions
             local load_extensions = function(extensions)
