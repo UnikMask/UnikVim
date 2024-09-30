@@ -45,6 +45,9 @@ opts.lspconfig = function()
             filetypes = { "astro", "templ", "javascript", "typescript", "react" },
             init_options = { userLanguages = { templ = "html" }, documentFormatting = false },
         },
+        ["tsserver"] = {
+            capabilities = get_capabilities_no_format()
+        },
         ["htmx-lsp"] = {
             capabilities = get_capabilities_no_format(),
             filetypes = { "html", "templ" },
