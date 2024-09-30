@@ -26,6 +26,7 @@ return {
         lazy = true,
         event = "VeryLazy",
         opts = {
+            patterns = { ".git", "Makefile", "*.sln", "" },
             detection_methods = {
                 "lsp",
                 "pattern",
@@ -33,19 +34,25 @@ return {
         },
         config = function(_, opts)
             require("project_nvim").setup(opts)
-        end
+        end,
     },
     {
         "rmagatti/auto-session",
+        dependencies = {
+            "nvim-telescope/telescope.nvim"
+        },
         lazy = true,
-        event = "BufRead",
+        event = "VeryLazy",
         opts = {
             log_level = vim.log.levels.WARN,
-            auto_session_enabled = false,
-            auto_save_enabled = true,
-            auto_restore_enabled = false,
-            auto_session_create_enabled = true,
-            auto_session_enable_last_session = vim.loop.cwd() == vim.loop.os_homedir(),
+            auto_save = true,
+            auto_restore = false,
+            use_git_branch = true,
+            auto_create = true,
+            suppressed_dirs = { "~", "~/gitrepos", "~/Downloads", "~/Documents" },
+            lazy_support = true,
+            auto_restore_last_session = false,
+            close_unsupported_windows = true,
             pre_save_cmds = {
                 function()
                     -- Close Nvim-Tree
@@ -62,9 +69,9 @@ return {
                 end,
             },
             session_lens = {
-                load_on_setup = false,
+                load_on_setup = true,
                 theme_conf = { border = true },
-                previewer = false,
+                previewer = true,
             },
         },
         init = function()
