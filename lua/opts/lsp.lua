@@ -71,6 +71,25 @@ opts.rust = function()
         server = {
             capabilities = get_capabilities(),
             on_attach = on_attach,
+            default_settings = {
+                ["rust-analyzer"] = {
+                    editor = {
+                        formatOnSave = true,
+                    },
+                    check = {
+                        command = "clippy",
+                    },
+                    cargo = {
+                        buildScripts = {
+                            enable = true,
+                        },
+                    },
+                    procMacro = {
+                        enable = true,
+                    },
+                    checkOnSave = true
+                },
+            },
         },
     }
 end

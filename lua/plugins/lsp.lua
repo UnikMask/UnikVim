@@ -54,7 +54,33 @@ return {
     {
         "mrcjkb/rustaceanvim",
         version = '^4',
-        lazy = false
+        lazy = true,
+        ft = { "rust" },
+        init = function()
+            vim.g.rustaceanvim = {
+                tools = {},
+                server = require("opts.lsp")["rust"](),
+                dap = require("opts.dap")["rustaceanvim"]()
+            }
+        end
+    },
+    {
+        "nvimtools/none-ls.nvim",
+        dependencies = {
+            "nvimtools/none-ls-extras.nvim"
+        },
+        config = function()
+            local null_ls = require("null-ls")
+            null_ls.setup({
+                debug = false,
+                sources = {
+                    -- null_ls.builtins.formatting.prettierd,
+                    null_ls.builtins.formatting.stylua,
+                    require('none-ls.diagnostics.eslint_d'),
+                    require('none-ls.diagnostics.cpplint')
+                }
+            })
+        end
     },
     {
         "p00f/clangd_extensions.nvim",
