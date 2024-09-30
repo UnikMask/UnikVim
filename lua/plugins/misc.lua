@@ -97,7 +97,18 @@ return {
                     ["Basic"] = "Deck",
                     ["Super Basic"] = "Deck::ChildDeck",
                 },
-            }
-        }
-    }
+            },
+        },
+    },
+    {
+        "rest-nvim/rest.nvim",
+        tag = "v3.2.0",
+        lazy = true,
+        keys = { { "<leader>rr", "<cmd>Rest run<cr>", desc = "Run request" } },
+        ft = { "http" },
+        cmd = { "Rest" },
+        config = function()
+            require("telescope").load_extension("rest")
+        end,
+    },
 }
