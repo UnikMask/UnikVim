@@ -25,7 +25,7 @@ misc.gitsigns = function()
     wk.register({
         g = {
             b = {
-                function ()
+                function()
                     vim.cmd("Gitsigns toggle_current_line_blame")
                 end,
                 "Toggle Git blame"

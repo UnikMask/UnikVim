@@ -70,5 +70,7 @@ opts.dapui = {}
 opts.mason = {
     ensure_installed = { "delve", "cppdbg" },
 }
-
+opts.rustaceanvim = function()
+    return {}
+end
 return opts
