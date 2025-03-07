@@ -52,18 +52,44 @@ return {
                 },
                 inactive_sections = {
                     lualine_a = {
-                        { "filename", separator = { left = " ", right = " " } },
+                        {
+                            "filename",
+                            separator = { left = " ", right = " " },
+                            symbols = {
+                                modified = "",
+                                readonly = "",
+                                newfile = "󰎔",
+                            },
+                        },
                     },
                     lualine_b = {},
                     lualine_c = {},
-                    lualine_x = {},
+                    lualine_x = {
+                        {
+                            "diagnostics",
+                            sources = { "nvim_diagnostic", "nvim_workspace_diagnostic" },
+                            symbols = { error = " ", warn = " ", info = " ", hint = "󰌶 " },
+                            colored = true,
+                            update_in_insert = true,
+                            always_visible = false,
+                        },
+                    },
                     lualine_y = {},
                     lualine_z = {
                         { "location", separator = { left = " ", right = " " } },
                     },
                 },
                 tabline = {},
-                extensions = { "quickfix", "overseer", "nvim-tree", "lazy", "mason", "trouble", "toggleterm", tagbar_extension },
+                extensions = {
+                    "quickfix",
+                    "overseer",
+                    "nvim-tree",
+                    "lazy",
+                    "mason",
+                    "trouble",
+                    "toggleterm",
+                    tagbar_extension,
+                },
             })
         end,
     },
