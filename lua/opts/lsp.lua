@@ -46,7 +46,7 @@ opts.lspconfig = function()
             init_options = { userLanguages = { templ = "html" }, documentFormatting = false },
         },
         ["tsserver"] = {
-            capabilities = get_capabilities_no_format()
+            capabilities = get_capabilities_no_format(),
         },
         ["htmx-lsp"] = {
             capabilities = get_capabilities_no_format(),

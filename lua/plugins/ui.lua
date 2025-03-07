@@ -6,9 +6,11 @@ return {
         config = function()
             local tagbar_extension = {
                 sections = {
-                    lualine_a = { function()
-                        return "Tagbar"
-                    end }
+                    lualine_a = {
+                        function()
+                            return "Tagbar"
+                        end,
+                    },
                 },
                 filetypes = { "tagbar" },
             }

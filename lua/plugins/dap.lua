@@ -14,7 +14,7 @@ return {
             require("keymaps.dap")()
         end,
         config = function()
-            opts = require("opts.dap")
+            local opts = require("opts.dap")
 
             local dap, dapui = require("dap"), require("dapui")
 
