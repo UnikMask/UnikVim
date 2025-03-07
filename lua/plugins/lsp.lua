@@ -53,7 +53,7 @@ return {
     },
     {
         "mrcjkb/rustaceanvim",
-        version = '^4',
+        version = '^5',
         lazy = true,
         ft = { "rust" },
         init = function()
