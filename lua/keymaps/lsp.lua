@@ -12,7 +12,12 @@ maps.lsp = function()
             h = { vim.lsp.buf.hover, "Hover Definition" },
             f = { vim.lsp.buf.format, "Format Document" },
             r = { vim.lsp.buf.rename, "Rename Action" },
-            m = { function() vim.cmd("Man") end, "Man Pages" },
+            m = {
+                function()
+                    vim.cmd("Man")
+                end,
+                "Man Pages",
+            },
             c = {
                 function()
                     require("trouble").toggle("diagnostics")
