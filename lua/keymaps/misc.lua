@@ -45,12 +45,13 @@ misc.auto_session = {
 }
 
 -- Lazy.nvim setup
+local lazy = require("lazy")
 misc.lazy = {
-    { "<leader>Ll", require("lazy").home,    desc = "Lazy home" },
-    { "<leader>Lp", require("lazy").profile, desc = "Lazy home" },
-    { "<leader>Lh", require("lazy").health,  desc = "Healthcheck" },
-    { "<leader>LH", require("lazy").help,    desc = "Help page" },
-    { "<leader>Ld", require("lazy").debug,   desc = "Debug info" },
+    { "<leader>Ll", lazy.home,    desc = "Lazy home" },
+    { "<leader>Lp", lazy.profile, desc = "Lazy home" },
+    { "<leader>Lh", lazy.health,  desc = "Healthcheck" },
+    { "<leader>LH", lazy.help,    desc = "Help page" },
+    { "<leader>Ld", lazy.debug,   desc = "Debug info" },
 }
 
 -- Orgmode setup

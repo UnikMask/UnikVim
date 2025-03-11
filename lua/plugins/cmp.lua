@@ -16,10 +16,12 @@ return {
         lazy = true,
         event = 'InsertEnter',
         config = function()
+            local cmp = require("cmp")
+            local opts_cmp = require("opts.cmp")
             require("luasnip/loaders/from_vscode").lazy_load()
-            require("cmp").setup(require("opts.cmp")["nvim-cmp"]())
-            require("cmp").setup.cmdline({ '/', '?' }, require("opts.cmp").buff_search())
-            require("cmp").setup.cmdline(':', require("opts.cmp").cmdline_search())
+            cmp.setup(opts_cmp["nvim-cmp"]())
+            cmp.setup.cmdline({ '/', '?' }, opts_cmp.buff_search())
+            cmp.setup.cmdline(':', opts_cmp.cmdline_search())
         end
     }
 }

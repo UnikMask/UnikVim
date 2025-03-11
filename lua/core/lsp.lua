@@ -3,7 +3,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
     callback = function(ev)
         vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
-        require('keymaps.lsp').lsp()
+        require('which-key').add(require('keymaps.lsp'))
     end
 })
 

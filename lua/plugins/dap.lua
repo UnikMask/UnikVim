@@ -10,9 +10,7 @@ return {
             "jay-babu/mason-nvim-dap.nvim",
         },
         lazy = true,
-        init = function()
-            require("keymaps.dap")()
-        end,
+        keys = require("keymaps.dap"),
         config = function()
             local opts = require("opts.dap")
 
