@@ -36,9 +36,11 @@ end
 -- Custom filetype support
 vim.filetype.add({ extension = { templ = "templ" } })
 
--- Load Independent keymaps
-require('keymaps.buffers')
-
+-- Load Independent Keymaps
+local wk_ok, wk = pcall(require, "which-key")
+if wk_ok then
+    wk.add(require('keymaps.buffers'))
+end
 
 -- Load core LSP utils
 require('core.lsp')

@@ -11,6 +11,7 @@ local groups = {
     { "<leader>d",  group = "Debugger" },
     { "<leader>dd", group = "Run" },
     { "<leader>dw", group = "Widgets" },
+    { "<leader>b",  group = "Buffers" }
 }
 
 for i = 1, 9 do
