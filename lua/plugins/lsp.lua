@@ -19,8 +19,8 @@ return {
             local capabilities
             local get_capabilities = function()
                 if capabilities == nil then
-                    capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol
-                        .make_client_capabilities())
+                    capabilities =
+                        require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
                     capabilities.offsetEncoding = "utf-8"
                     capabilities.textDocument.semanticHighlighting = true
                 end
@@ -35,7 +35,7 @@ return {
             require("lsp-format").setup()
             local lspconfigs = require("opts.lsp").lspconfig()
             local disabled = require("opts.lsp").lspconfig_disable
-            require("mason-lspconfig").setup_handlers {
+            require("mason-lspconfig").setup_handlers({
                 function(server_name)
                     if lspconfigs[server_name] ~= nil then
                         require("lspconfig")[server_name].setup(lspconfigs[server_name])
@@ -44,30 +44,38 @@ return {
                     else
                         require("lspconfig")[server_name].setup({
                             on_attach = on_attach,
-                            capabilities = get_capabilities()
+                            capabilities = get_capabilities(),
                         })
                     end
-                end
-            }
+                end,
+            })
         end,
     },
     {
         "mrcjkb/rustaceanvim",
-        version = '^5',
+        version = "^5",
         lazy = true,
         ft = { "rust" },
+        keys = {
+            {
+                "<leader>cT",
+                function()
+                    vim.cmd.RustLsp("testables")
+                end,
+            },
+        },
         init = function()
             vim.g.rustaceanvim = {
                 tools = {},
                 server = require("opts.lsp")["rust"](),
-                dap = require("opts.dap")["rustaceanvim"]()
+                dap = require("opts.dap")["rustaceanvim"](),
             }
-        end
+        end,
     },
     {
         "nvimtools/none-ls.nvim",
         dependencies = {
-            "nvimtools/none-ls-extras.nvim"
+            "nvimtools/none-ls-extras.nvim",
         },
         config = function()
             local null_ls = require("null-ls")
@@ -76,11 +84,11 @@ return {
                 sources = {
                     -- null_ls.builtins.formatting.prettierd,
                     null_ls.builtins.formatting.stylua,
-                    require('none-ls.diagnostics.eslint_d'),
-                    require('none-ls.diagnostics.cpplint')
-                }
+                    require("none-ls.diagnostics.eslint_d"),
+                    require("none-ls.diagnostics.cpplint"),
+                },
             })
-        end
+        end,
     },
     {
         "p00f/clangd_extensions.nvim",
@@ -93,6 +101,6 @@ return {
         config = function()
             require("clangd_extensions").setup(require("opts.lsp")["clangd"]())
             require("lspconfig")["clangd"].setup(require("opts.lsp")["lsp_clangd"]())
-        end
+        end,
     },
 }

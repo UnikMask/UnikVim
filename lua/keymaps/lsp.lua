@@ -28,13 +28,4 @@ maps.lsp = function()
     }, { prefix = "<leader>" })
 end
 
-maps.rust = function()
-    wk.add({ {
-        "<leader>cT",
-        function()
-            vim.cmd.RustLsp("testables")
-        end,
-    } })
-end
-
 return maps
