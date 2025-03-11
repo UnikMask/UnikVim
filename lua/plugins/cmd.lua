@@ -29,8 +29,6 @@ return {
         cmd = { "ToggleTerm", "TermExec" },
         version = "*",
         opts = {},
-        init = function()
-            require("keymaps.cmd")()
-        end
+        keys = require("keymaps.cmd")
     }
 }

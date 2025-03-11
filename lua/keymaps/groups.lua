@@ -13,4 +13,8 @@ local groups = {
     { "<leader>dw", group = "Widgets" },
 }
 
+for i = 1, 9 do
+    table.insert(groups, { "<leader>r" .. tostring(i), group = "Terminal " .. tostring(i) })
+end
+
 return groups
