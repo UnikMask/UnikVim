@@ -3,9 +3,7 @@ return {
         "stevearc/overseer.nvim",
         lazy = true,
         cmd = { "OverseerRun", "OverseerToggle", "OverseerInfo" },
-        init = function()
-            require('keymaps.misc').overseer_init()
-        end,
+        keys = require('keymaps.misc').overseer,
         opts = {
             strategy = {
                 "toggleterm",
@@ -23,7 +21,6 @@ return {
         },
         config = function(_, opts)
             require("overseer").setup(opts)
-            require("keymaps.misc").overseer_config()
         end
     },
     {

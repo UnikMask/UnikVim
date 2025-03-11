@@ -9,9 +9,7 @@ return {
             "NvimTreeToggle",
             "NvimTreeOpen",
         },
-        init = function()
-            require("keymaps.misc").nvimtree()
-        end,
+        keys = require("keymaps.misc").nvimtree,
         opts = {
             sync_root_with_cwd = true,
             respect_buf_cwd = true,
@@ -70,9 +68,7 @@ return {
                 previewer = true,
             },
         },
-        init = function()
-            require("keymaps.misc").auto_session()
-        end,
+        keys = require("keymaps.misc").auto_session,
         config = function(_, opts)
             require("auto-session").setup(opts)
 

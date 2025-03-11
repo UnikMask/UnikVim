@@ -1,7 +1,7 @@
 return {
     {
         "nvim-orgmode/orgmode",
-        version = "*",
+        -- version = "*",
         lazy = true,
         dependencies = {
             "hrsh7th/nvim-cmp",
@@ -19,9 +19,7 @@ return {
             },
         },
         ft = { "org" },
-        init = function()
-            require("keymaps.misc").orgmode()
-        end,
+        keys = require("keymaps.misc").orgmode,
         config = function(_, opts)
             require("nvim-treesitter.configs").setup({
                 highlight = {
@@ -41,6 +39,8 @@ return {
     {
         "chipsenkbeil/org-roam.nvim",
         lazy = true,
+        version = "*",
+        enabled = false,
         event = "VeryLazy",
         ft = { "org" },
         dependencies = {

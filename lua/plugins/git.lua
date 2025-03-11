@@ -8,9 +8,7 @@ return {
         },
         lazy = true,
         cmd = { 'Neogit' },
-        init = function()
-            require('keymaps.misc').neogit()
-        end,
+        keys = require("keymaps.misc").neogit,
         opts = {
             kind = 'split_above',
             popup = {
@@ -26,9 +24,7 @@ return {
         "lewis6991/gitsigns.nvim",
         lazy = true,
         event = "BufRead",
-        init = function()
-            require("keymaps.misc").gitsigns()
-        end,
+        keys = require("keymaps.misc").gitsigns,
         opts = {
             signcolumn = true,
             current_line_blame_opts = {

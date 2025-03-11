@@ -1,262 +1,218 @@
-local wk = require("which-key")
 local misc = {}
-local prefix = { prefix = "<leader>" }
 
 -- Neogit setup
-misc.neogit = function()
-    local neogit = function()
-        return require("neogit")
-    end
-    wk.register({
-        g = {
-            name = "Git",
-            g = {
-                function()
-                    neogit().open()
-                end,
-                "Git status",
-            },
-        },
-    }, prefix)
-end
+misc.neogit = {
+    {
+        "<leader>gg",
+        function()
+            require("neogit").open()
+        end,
+        desc = "Open Git",
+    },
+}
 
 -- Fugitive Setup
-misc.gitsigns = function()
-    wk.register({
-        g = {
-            b = {
-                function()
-                    vim.cmd("Gitsigns toggle_current_line_blame")
-                end,
-                "Toggle Git blame"
-            },
-        },
-    }, prefix)
-end
+misc.gitsigns = {
+    {
+        "<leader>gb",
+        function()
+            vim.cmd("Gitsigns toggle_current_line_blame")
+        end,
+        desc = "Git Blame",
+    },
+}
 
 -- Nvim-tree setup
-misc.nvimtree = function()
-    local api = function()
-        return require("nvim-tree.api")
-    end
-    wk.register({
-        e = {
-            name = "Open",
-            t = {
-                function()
-                    api().tree.toggle()
-                end,
-                "File Explorer tree",
-            },
-        },
-    }, prefix)
-end
+misc.nvimtree = {
+    {
+        "<leader>et",
+        function()
+            require("nvim-tree.api").tree.toggle()
+        end,
+        desc = "File Explorer tree",
+    },
+}
 
 -- Auto-session setup
-misc.auto_session = function()
-    local auto_session = function()
-        return require("auto-session")
-    end
-    wk.register({
-        q = {
-            name = "Sessions",
-            l = {
-                function()
-                    auto_session().RestoreSession()
-                end,
-                "Restore last session",
-            },
-        },
-    }, prefix)
-end
+misc.auto_session = {
+    {
+        "<leader>ql",
+        function()
+            require("auto-session").RestoreSession()
+        end,
+        desc = "Restore last session",
+    },
+}
 
 -- Lazy.nvim setup
-misc.lazy = function()
-    wk.register({
-        L = {
-            name = "Lazy",
-            l = { require("lazy").home, "Lazy Home" },
-            p = { require("lazy").profile, "Profile" },
-            h = { require("lazy").health, "Healthcheck" },
-            H = { require("lazy").help, "Help Page" },
-            d = { require("lazy").debug, "Debug Info" },
-        },
-    }, prefix)
-end
+misc.lazy = {
+    { "<leader>Ll", require("lazy").home,    desc = "Lazy home" },
+    { "<leader>Lp", require("lazy").profile, desc = "Lazy home" },
+    { "<leader>Lh", require("lazy").health,  desc = "Healthcheck" },
+    { "<leader>LH", require("lazy").help,    desc = "Help page" },
+    { "<leader>Ld", require("lazy").debug,   desc = "Debug info" },
+}
 
 -- Orgmode setup
-misc.orgmode = function()
-    wk.register({
-        o = {
-            name = "Orgmode",
-            a = {
-                function()
-                    require("orgmode").action("agenda.prompt", { opts = { buffer = false } })
-                end,
-                "org agenda",
-            },
-            c = {
-                function()
-                    require("orgmode").action("capture.prompt", { opts = { buffer = false } })
-                end,
-                "org capture",
-            },
-        },
-    }, { prefix = "<leader>" })
-end
+misc.orgmode = {
+    {
+        "<leader>oa",
+        function()
+            require("orgmode").action("agenda.prompt", { opts = { buffer = false } })
+        end,
+        desc = "Org agenda",
+    },
+    {
+        "<leader>oc",
+        function()
+            require("orgmode").action("capture.prompt", { opts = { buffer = false } })
+        end,
+        desc = "Org capture",
+    },
+}
 
-misc.notify = function()
-    wk.register({
-        n = {
-            name = "Notifications",
-            h = {
-                function()
-                    vim.cmd("Notifications")
-                end,
-                "History",
-            },
-        },
-    }, prefix)
-end
+misc.notify = {
+    {
+        "<leader>nh",
+        function()
+            vim.cmd("Notifications")
+        end,
+        desc = "History",
+    },
+}
 
 -- Overseer keymaps
 
-misc.overseer_init = function()
-    wk.register({
-        t = {
-            name = "Tasks",
-            o = {
-                function()
-                    require("overseer").toggle()
-                end,
-                "Toggle Window",
-            },
-            t = {
-                function()
-                    require("overseer").run_template()
-                end,
-                "Run Template",
-            },
-        },
-    }, prefix)
-end
-
-misc.overseer_config = function()
-    wk.register({
-        a = {
-            function()
-                vim.cmd("OverseerQuickAction")
-            end,
-            "Run Quick Action",
-        },
-    }, { prefix = "<leader>t" })
-end
+misc.overseer = {
+    {
+        "<leader>to",
+        function()
+            require("overseer").toggle()
+        end,
+        desc = "Toggle Window",
+    },
+    {
+        "<leader>tt",
+        function()
+            require("overseer").run_template()
+        end,
+        desc = "Run Template",
+    },
+    {
+        "<leader>ta",
+        function()
+            vim.cmd("OverseerQuickAction")
+        end,
+        "Run Quick Action",
+    },
+}
 
 -- Leetbuddy keymaps
-misc.leetbuddy = function()
-    wk.register({
-        l = {
-            name = "Leetbuddy",
-            l = {
-                function()
-                    local opts = require("leetbuddy").user_config
-                    require("leetbuddy.questions").questions(opts)
-                end,
-                "List Questions",
-            },
-            q = {
-                function()
-                    local opts = require("leetbuddy").user_config
-                    require("leetbuddy.question").question(opts)
-                end,
-                "Show Question",
-            },
-            R = {
-                function()
-                    local opts = require("leetbuddy").user_config
-                    require("leetbuddy.reset").reset(opts)
-                end,
-                "Reset buffer",
-            },
-            s = {
-                function()
-                    local opts = require("leetbuddy").user_config
-                    require("leetbuddy.split").close_split(opts)
-                end,
-                "Open split",
-            },
-            k = {
-                function()
-                    local opts = require("leetbuddy").user_config
-                    require("leetbuddy.split").close_split(opts)
-                end,
-                "Close split",
-            },
-            t = {
-                function()
-                    local opts = require("leetbuddy").user_config
-                    require("leetbuddy.runner").test(opts)
-                end,
-                "Test code",
-            },
-            r = {
-                function()
-                    local opts = require("leetbuddy").user_config
-                    require("leetbuddy.runner").submit(opts)
-                end,
-                "Submit code",
-            },
-            A = {
-                function()
-                    local opts = require("leetbuddy").user_config
-                    require("leetbuddy.cookies").check_auth(opts)
-                end,
-                "Check authentication",
-            },
-        },
-    }, prefix)
-end
+misc.leetbuddy = {
+    {
+        "<leader>ll",
+        function()
+            local opts = require("leetbuddy").user_config
+            require("leetbuddy.questions").questions(opts)
+        end,
+        desc = "List Questions",
+    },
+    {
+        "<leader>lq",
+        function()
+            local opts = require("leetbuddy").user_config
+            require("leetbuddy.question").question(opts)
+        end,
+        desc = "Show Question",
+    },
+    {
+        "<leader>lR",
+        function()
+            local opts = require("leetbuddy").user_config
+            require("leetbuddy.reset").reset(opts)
+        end,
+        desc = "Reset buffer",
+    },
+    {
+        "<leader>ls",
+        function()
+            local opts = require("leetbuddy").user_config
+            require("leetbuddy.split").close_split(opts)
+        end,
+        desc = "Open split",
+    },
+    {
+        "<leader>lk",
+        function()
+            local opts = require("leetbuddy").user_config
+            require("leetbuddy.split").close_split(opts)
+        end,
+        desc = "Close split",
+    },
+    {
+        "<leader>lt",
+        function()
+            local opts = require("leetbuddy").user_config
+            require("leetbuddy.runner").test(opts)
+        end,
+        desc = "Test code",
+    },
+    {
+        "<leader>lr",
+        function()
+            local opts = require("leetbuddy").user_config
+            require("leetbuddy.runner").submit(opts)
+        end,
+        desc = "Submit code",
+    },
+    {
+        "<leader>lA",
+        function()
+            local opts = require("leetbuddy").user_config
+            require("leetbuddy.cookies").check_auth(opts)
+        end,
+        desc = "Check authentication",
+    },
+}
 
 -- Nvim-Spider
-misc.nvimSpider = function()
-    wk.register({
-        w = {
-            function()
-                require("spider").motion("w")
-            end,
-            "Next word",
-        },
-        e = {
-            function()
-                require("spider").motion("e")
-            end,
-            "Next end of word",
-        },
-        b = {
-            function()
-                require("spider").motion("b")
-            end,
-            "Previous word",
-        },
-    }, {
-        prefix = "",
+misc.nvimSpider = {
+    {
+        "w",
+        function()
+            require("spider").motion("w")
+        end,
+        desc = "Next word",
         mode = { "n", "v" },
-    })
-end
+    },
+    {
+        "e",
+        function()
+            require("spider").motion("e")
+        end,
+        desc = "Next end of word",
+        mode = { "n", "v" },
+    },
+    {
+        "b",
+        function()
+            require("spider").motion("b")
+        end,
+        desc = "Previous word",
+        mode = { "n", "v" },
+    },
+}
 
 -- Tagbar Setup
-misc.tagbar = function()
-    wk.register({
-        e = {
-            r = {
-                function()
-                    require("lazy").load({ plugins = { "tagbar" } })
-                    vim.cmd("TagbarToggle")
-                end,
-                "Toggle tags",
-            },
-        },
-    }, prefix)
-end
+misc.tagbar = {
+    {
+        "<leader>er",
+        function()
+            require("lazy").load({ plugins = { "tagbar" } })
+            vim.cmd("TagbarToggle")
+        end,
+        "Toggle tags",
+    },
+}
 
 return misc

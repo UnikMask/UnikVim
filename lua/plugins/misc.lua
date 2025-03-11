@@ -17,6 +17,7 @@ return {
             fps = 60,
             top_down = true,
         },
+        keys = require("keymaps.misc").notify,
         config = function(_, opts)
             require("notify").setup(opts)
             vim.notify = require("notify")
@@ -63,25 +64,19 @@ return {
             domain = "com",
             language = "py",
         },
-        init = function()
-            require("keymaps.misc").leetbuddy()
-        end,
+        keys = require("keymaps.misc").leetbuddy,
     },
     {
         "chrisgrieser/nvim-spider",
         lazy = true,
         opts = {},
-        init = function()
-            require("keymaps.misc").nvimSpider()
-        end,
+        keys = require("keymaps.misc").nvimSpider,
     },
     {
         "preservim/tagbar",
         lazy = true,
         cmd = { "TagbarToggle" },
-        init = function()
-            require("keymaps.misc").tagbar()
-        end,
+        keys = require("keymaps.misc").tagbar
     },
     {
         "rareitems/anki.nvim",
