@@ -5,6 +5,12 @@ local get_capabilities = function()
     return capabilities
 end
 
+local capabilities_no_utf8 = function()
+    local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+    -- capabilities.textDocument.semanticHighlighting = true
+    return capabilities
+end
+
 local get_capabilities_no_format = function()
     local capabilities_no_format = get_capabilities()
     capabilities_no_format.textDocument.formatting = false
@@ -13,6 +19,7 @@ local get_capabilities_no_format = function()
 end
 
 local on_attach = function(client, bufnr)
+    vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
     return require("lsp-format").on_attach(client, bufnr)
 end
 
@@ -70,28 +77,41 @@ end
 
 -- Rust Options
 opts.rust = function()
+    -- Set up autocommands for rust ctags
+    local tags_group = vim.api.nvim_create_augroup("RustyTags", {})
+    vim.api.nvim_create_autocmd({ "BufRead" }, {
+        pattern = { "*.rs" },
+        group = tags_group,
+        callback = function()
+            vim.bo.tags = "./rusty-tags.vi;/$RUST_SRT_PATH/rusty-tags.vi"
+        end,
+    })
+    vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+        pattern = { "*.rs" },
+        group = tags_group,
+        callback = function()
+            os.execute("rusty-tags vi --quiet --start-dir=" .. vim.fn.expand("%:p:h"))
+            vim.api.nvim_exec2("redraw", {})
+        end,
+    })
     return {
-        server = {
-            capabilities = get_capabilities(),
-            on_attach = on_attach,
-            default_settings = {
-                ["rust-analyzer"] = {
-                    editor = {
-                        formatOnSave = true,
-                    },
-                    check = {
-                        command = "clippy",
-                    },
-                    cargo = {
-                        buildScripts = {
-                            enable = true,
-                        },
-                    },
-                    procMacro = {
-                        enable = true,
-                    },
-                    checkOnSave = true
+        capabilities = capabilities_no_utf8(),
+        on_attach = on_attach,
+        default_settings = {
+            ["rust-analyzer"] = {
+                editor = {
+                    formatOnSave = true,
                 },
+                check = {
+                    command = "clippy"
+                },
+                cargo = {
+                    features = { "all" },
+                },
+                procMacro = {
+                    enable = true,
+                },
+                checkOnSave = true,
             },
         },
     }
