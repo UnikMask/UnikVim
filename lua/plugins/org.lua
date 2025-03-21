@@ -21,13 +21,6 @@ return {
         ft = { "org" },
         keys = require("keymaps.misc").orgmode,
         config = function(_, opts)
-            require("nvim-treesitter.configs").setup({
-                highlight = {
-                    enable = true,
-                    additional_vim_regex_highlighting = { "org" },
-                },
-                ensure_installed = { "org" },
-            })
             require("orgmode").setup(require("opts.org").org())
             require("cmp").setup.filetype("org", {
                 sources = require("cmp").config.sources({
