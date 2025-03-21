@@ -74,7 +74,7 @@ local toggleterm = {
         end,
         desc = "Toggle External File Explorer",
     },
-    { "<Escape>", "<C-\\><C-n>", "Escape terminal" },
+    { "<Esc>", "<C-\\><C-n>", desc = "Escape terminal" },
 }
 for i = 1, 9 do
     for _, mapping in ipairs(get_term_keys(i)) do

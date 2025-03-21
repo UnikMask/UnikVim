@@ -4,9 +4,9 @@
 local setLeader = function(key)
     vim.g.mapleader = key
     vim.g.maplocalleader = key
-    vim.keymap.set({ 'n', 'v' }, key, '<nop>', { silent = true })
+    vim.keymap.set({ "n", "v" }, key, "<nop>", { silent = true })
 end
-setLeader(' ')
+setLeader(" ")
 
 -- Load options
 vim.o.shiftwidth = 4
@@ -22,7 +22,7 @@ vim.o.guifont = "FiraCode Nerd Font Mono 12"
 vim.g.barbar_auto_setup = false
 
 vim.opt.conceallevel = 2
-vim.opt.concealcursor = 'nc'
+vim.opt.concealcursor = "nc"
 
 -- Load Lazy
 require("core.lazy")
@@ -39,11 +39,11 @@ vim.filetype.add({ extension = { templ = "templ" } })
 -- Load Independent Keymaps
 local wk_ok, wk = pcall(require, "which-key")
 if wk_ok then
-    wk.add(require('keymaps.buffers'))
+    wk.add(require("keymaps.buffers"))
 end
 
 -- Load core LSP utils
-require('core.lsp')
+require("core.lsp")
 
 -- Load Colorscheme
 for _, name in pairs({ "iroh" }) do
