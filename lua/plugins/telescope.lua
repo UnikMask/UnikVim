@@ -1,7 +1,6 @@
 return {
     {
         "nvim-telescope/telescope.nvim",
-        tag = "0.1.8",
         dependencies = {
             "rcarriga/nvim-notify",
             "nvim-lua/plenary.nvim",
@@ -9,9 +8,7 @@ return {
         },
         lazy = true,
         cmd = { "Telescope" },
-        init = function()
-            require("keymaps.telescope")
-        end,
+        keys = require("keymaps.telescope"),
         config = function()
             -- Load Telescope
             local telescope = require("telescope")

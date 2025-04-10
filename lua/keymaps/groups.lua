@@ -12,7 +12,10 @@ local groups = {
     { "<leader>dd", group = "Run" },
     { "<leader>dw", group = "Widgets" },
     { "<leader>b",  group = "Buffers" },
-    { "<leader>a",  group = "LLMs/AI tooling" }
+    { "<leader>a",  group = "LLMs/AI tooling" },
+    { "<leader>f",  group = "Find" },
+    { "<leader>h",  group = "Help" },
+    { "<leader>r",  group = "Terminal" },
 }
 
 for i = 1, 9 do

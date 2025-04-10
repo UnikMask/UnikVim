@@ -1,6 +1,6 @@
 return {
     {
-        '<leader>aA',
+        '<leader>aa',
         function()
             require("avante.api").ask()
         end,
