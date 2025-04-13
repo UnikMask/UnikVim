@@ -18,7 +18,7 @@ return {
     {
         '<leader>ab',
         function()
-            require("avante.api").refresh()
+            require("avante.api").build()
         end,
         desc = "Build dependencies",
         mode = { "n", "v" }
@@ -28,31 +28,31 @@ return {
         function()
             require("avante.api").stop()
         end,
-        desc = "Build dependencies",
+        desc = "Stop agent from running",
+        mode = { "n", "v" }
+    },
+    {
+        '<leader>as',
+        function()
+            require("avante.api").get_suggestion()
+        end,
+        desc = "Get agent suggestion",
         mode = { "n", "v" }
     },
     {
         '<leader>ac',
         function()
-            require("avante.api").stop()
+            require("avante.api").clear()
         end,
         desc = "Clear chat history",
         mode = { "n", "v" }
     },
     {
-        '<leader>ap',
-        function()
-            require("avante.api").stop()
-        end,
-        desc = "Show repo structure",
-        mode = { "n", "v" }
-    },
-    {
         '<leader>am',
         function()
-            require("avante.api").models()
+            require("avante.api").select_model()
         end,
-        desc = "Show repo structure",
+        desc = "Display models",
         mode = { "n", "v" }
     },
     {
