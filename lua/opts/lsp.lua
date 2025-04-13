@@ -115,11 +115,8 @@ opts.rust = function()
                 editor = {
                     formatOnSave = true,
                 },
-                check = {
-                    command = "clippy"
-                },
                 cargo = {
-                    features = { "all" },
+                    features = "all",
                 },
                 procMacro = {
                     enable = true,
