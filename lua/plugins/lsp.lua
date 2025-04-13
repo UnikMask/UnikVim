@@ -22,7 +22,13 @@ return {
                     capabilities =
                         require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
                     capabilities.offsetEncoding = "utf-8"
-                    capabilities.textDocument.semanticHighlighting = true
+                    if capabilities.textDocument.semanticTokens ~= nil then
+                        capabilities.textDocument.semanticTokens.multilineTokenSupport = true
+                    else
+                        capabilities.textDocument.semanticTokens = {
+                            multilineTokenSupport = true,
+                        }
+                    end
                 end
                 return capabilities
             end
