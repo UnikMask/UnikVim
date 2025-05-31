@@ -2,7 +2,7 @@ local M = {}
 
 M.roam = function()
     return {
-        directory = '~/org/roam/',
+        directory = "~/org/roam/",
     }
 end
 
@@ -27,43 +27,43 @@ M.org = function()
         },
         org_capture_templates = {
             s = {
-                description = 'Standup Summary',
-                template = '* %u Standup Summary\n\n',
-                target = '~/org/standups/standup-%<%Y-%m-%d>.org'
+                description = "Standup Summary",
+                template = "* %u Standup Summary\n\n",
+                target = "~/org/standups/standup-%<%Y-%m-%d>.org",
             },
             T = {
-                description = 'Todo',
-                template = '* TODO %?\n %u',
-                target = '~/org/todo.org'
+                description = "Todo",
+                template = "* TODO %?\n %u",
+                target = "~/org/todo.org",
             },
             j = {
-                description = 'Journal',
-                template = '\n*** %<%Y-%m-%d> %<%A>\n**** %U\n\n%?',
-                target = '~/org/journal.org'
+                description = "Journal",
+                template = "\n*** %<%Y-%m-%d> %<%A>\n**** %U\n\n%?",
+                target = "~/org/journal.org",
             },
             J = {
-                description = 'Journal',
-                template = '\n*** %<%Y-%m-%d> %<%A>\n**** %U\n\n%?',
-                target = '~/sync/org/journal/%<%Y-%m>.org'
+                description = "Journal",
+                template = "\n*** %<%Y-%m-%d> %<%A>\n**** %U\n\n%?",
+                target = "~/sync/org/journal/%<%Y-%m>.org",
             },
             e = {
-                description = 'Event',
+                description = "Event",
                 subtemplates = {
                     r = {
-                        description = 'recurring',
-                        template = '** %?\n %T',
-                        target = '~/org/calendar.org',
-                        headline = 'recurring'
+                        description = "recurring",
+                        template = "** %?\n %T",
+                        target = "~/org/calendar.org",
+                        headline = "recurring",
                     },
                     o = {
-                        description = 'one-time',
-                        template = '** %?\n %T',
-                        target = '~/org/calendar.org',
-                        headline = 'one-time'
+                        description = "one-time",
+                        template = "** %?\n %T",
+                        target = "~/org/calendar.org",
+                        headline = "one-time",
                     },
                 },
             },
-        }
+        },
     }
 end
 

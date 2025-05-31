@@ -146,7 +146,7 @@ return {
         "preservim/tagbar",
         lazy = true,
         cmd = { "TagbarToggle" },
-        keys = require("keymaps.misc").tagbar
+        keys = require("keymaps.misc").tagbar,
     },
     {
         "rareitems/anki.nvim",
