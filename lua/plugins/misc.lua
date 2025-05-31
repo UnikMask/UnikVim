@@ -54,7 +54,77 @@ return {
         "folke/trouble.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" },
         lazy = true,
-        opts = {},
+        event = "VeryLazy",
+        opts = {
+            modes = {
+                buf_diagnostics = {
+                    mode = "diagnostics",
+                    filter = {
+                        any = {
+                            buf = 0,
+                            {
+                                severity = vim.diagnostic.severity.ERROR,
+                                function(item)
+                                    return item.filename:find((vim.oop or vim.uv).cwd(), 1, true)
+                                end,
+                            },
+                        },
+                    },
+                },
+                diagnostics_errors = {
+                    mode = "diagnostics",
+                    filter = {
+                        severity = vim.diagnostic.severity.ERROR,
+                    },
+                },
+                diagnostics_warnings = {
+                    mode = "diagnostics",
+                    filter = {
+                        severity = vim.diagnostic.severity.WARN,
+                    },
+                },
+                diagnostics_hints = {
+                    mode = "diagnostics",
+                    filter = {
+                        severity = vim.diagnostic.severity.HINT,
+                    },
+                },
+                diagnostics_ft_project = {
+                    mode = "diagnostics",
+                    filter = {
+                        -- function(item)
+                        --     return item.filetype == vim.bo.filetype
+                        -- end,
+                        function(item)
+                            return item.filename:find((vim.oop or vim.uv).cwd(), 1, true)
+                        end,
+                    },
+                    preview = {
+                        type = "split",
+                        relative = "win",
+                        position = "right",
+                        size = 0.3,
+                    },
+                },
+                preview_float = {
+                    mode = "diagnostics",
+                    preview = {
+                        type = "split",
+                        relative = "win",
+                        position = "right",
+                        size = 0.3,
+                    },
+                },
+            },
+        },
+        config = function(_, opts)
+            require("trouble").setup(opts)
+            vim.api.nvim_create_autocmd("QuickFixCmdPost", {
+                callback = function()
+                    vim.cmd([[Trouble qflist open]])
+                end,
+            })
+        end,
     },
     {
         "Dhanus3133/Leetbuddy.nvim",

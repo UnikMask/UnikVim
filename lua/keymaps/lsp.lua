@@ -11,15 +11,42 @@ local maps = {
         function()
             vim.cmd("Man")
         end,
-        desc = "Man Pages"
+        desc = "Man Pages",
     },
     {
         "<leader>cc",
         function()
-            require("trouble").toggle("diagnostics")
+            require("trouble").toggle("diagnostics_ft_project")
         end,
-        desc = "Toggle Diagnostics"
-    }
+        desc = "Toggle Diagnostics",
+    },
+    {
+        "<leader>cCb",
+        function()
+            require("trouble").toggle("buf_diagnostics")
+        end,
+        desc = "Current buffer diagnostics",
+    },
+    {
+        "<leader>cCe",
+        function()
+            require("trouble").toggle("diagnostics_errors")
+        end,
+        desc = "Error diagnostics",
+    },
+    {
+        "<leader>cCw",
+        function()
+            require("trouble").toggle("diagnostics_warnings")
+        end,
+        desc = "Warning diagnostics",
+    },
+    {
+        "<leader>cs",
+        function()
+            require("trouble").toggle("symbols")
+        end,
+    },
 }
 
 return maps
