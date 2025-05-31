@@ -4,7 +4,6 @@ return {
         dependencies = {
             "rcarriga/nvim-dap-ui",
             "nvim-neotest/nvim-nio",
-            "folke/neodev.nvim",
             "mfussenegger/nvim-dap-python",
             "williamboman/mason.nvim",
             "jay-babu/mason-nvim-dap.nvim",
@@ -39,7 +38,6 @@ return {
                 dapui.close()
             end
             vim.fn.sign_define("DapBreakpoint", { text = "🛑", texthl = "", linehl = "", numhl = "" })
-            require("neodev").setup()
         end,
     },
 }
