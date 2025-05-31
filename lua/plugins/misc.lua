@@ -176,4 +176,9 @@ return {
             require("telescope").load_extension("rest")
         end,
     },
+    {
+        "3rd/image.nvim",
+        lazy = true,
+        event = "VeryLazy",
+    },
 }
