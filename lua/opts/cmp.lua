@@ -83,6 +83,7 @@ opts["nvim-cmp"] = function()
             end,
         },
         sources = {
+            { name = "lazydev" },
             { name = "nvim_lsp" },
             { name = "nvim_lua" },
             { name = "luasnip" },

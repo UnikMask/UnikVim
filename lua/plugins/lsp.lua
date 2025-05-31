@@ -1,66 +1,36 @@
 return {
     {
-        "neovim/nvim-lspconfig",
+        "ray-x/lsp_signature.nvim",
         lazy = true,
+        event = "InsertEnter",
+        opts = {},
+    },
+    {
+        "lukas-reineke/lsp-format.nvim",
+        lazy = true,
+    },
+    {
+        "mason-org/mason-lspconfig.nvim",
+        lazy = true,
+        version = "2.0.0",
         event = "BufRead",
         dependencies = {
-            "williamboman/mason.nvim",
-            "williamboman/mason-lspconfig.nvim",
-            "j-hui/fidget.nvim",
-            "lukas-reineke/lsp-format.nvim",
-            "hrsh7th/cmp-nvim-lsp",
-            "folke/trouble.nvim",
-            "nvimtools/none-ls.nvim",
-            "ray-x/lsp_signature.nvim",
-            "folke/neodev.nvim",
+            {
+                "mason-org/mason.nvim",
+                opts = {},
+            },
+            "neovim/nvim-lspconfig",
         },
-        config = function()
-            -- Functions for LSP server set up
-            local capabilities
-            local get_capabilities = function()
-                if capabilities == nil then
-                    capabilities =
-                        require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-                    capabilities.offsetEncoding = "utf-8"
-                    if capabilities.textDocument.semanticTokens ~= nil then
-                        capabilities.textDocument.semanticTokens.multilineTokenSupport = true
-                    else
-                        capabilities.textDocument.semanticTokens = {
-                            multilineTokenSupport = true,
-                        }
-                    end
-                end
-                return capabilities
-            end
-
-            local on_attach = function(client, bufnr)
-                return require("lsp-format").on_attach(client, bufnr)
-            end
-
-            -- Set up LSP format wrapper
-            require("lsp-format").setup()
-            local lspconfigs = require("opts.lsp").lspconfig()
-            local disabled = require("opts.lsp").lspconfig_disable
-            require("mason-lspconfig").setup_handlers({
-                function(server_name)
-                    if lspconfigs[server_name] ~= nil then
-                        require("lspconfig")[server_name].setup(lspconfigs[server_name])
-                    elseif disabled[server_name] == true then
-                        -- require("lspconfig")[server_name].setup({})
-                    else
-                        require("lspconfig")[server_name].setup({
-                            on_attach = on_attach,
-                            capabilities = get_capabilities(),
-                        })
-                    end
-                end,
-            })
-        end,
+        opts = {
+            -- exclude = { "rust-analyzer" },
+            ensure_installed = { "lua_ls" },
+            automatic_enable = true,
+        },
     },
     {
         "mrcjkb/rustaceanvim",
-        version = "^5",
-        lazy = true,
+        version = "^6",
+        lazy = false,
         ft = { "rust" },
         keys = {
             {
@@ -70,16 +40,11 @@ return {
                 end,
             },
         },
-        init = function()
-            vim.g.rustaceanvim = {
-                tools = {},
-                server = require("opts.lsp")["rust"](),
-                dap = require("opts.dap")["rustaceanvim"](),
-            }
-        end,
     },
     {
         "nvimtools/none-ls.nvim",
+        lazy = true,
+        event = "BufRead",
         dependencies = {
             "nvimtools/none-ls-extras.nvim",
         },
@@ -108,5 +73,16 @@ return {
             require("clangd_extensions").setup(require("opts.lsp")["clangd"]())
             require("lspconfig")["clangd"].setup(require("opts.lsp")["lsp_clangd"]())
         end,
+    },
+    {
+        "folke/lazydev.nvim",
+        lazy = true,
+        ft = "lua",
+        opts = {
+            integrations = {
+                lspconfig = true,
+                cmp = true,
+            },
+        },
     },
 }
