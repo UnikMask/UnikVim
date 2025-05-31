@@ -5,6 +5,8 @@ return {
         lazy = true,
         dependencies = {
             "hrsh7th/nvim-cmp",
+            "nvim-telescope/telescope.nvim",
+            "nvim-orgmode/telescope-orgmode.nvim",
             {
                 "akinsho/org-bullets.nvim",
                 opts = {
@@ -17,10 +19,14 @@ return {
                     },
                 },
             },
+            {
+                "https://github.com/lukas-reineke/headlines.nvim",
+            },
         },
         ft = { "org" },
         keys = require("keymaps.misc").orgmode,
-        config = function(_, opts)
+        config = function(_, _)
+            require("telescope").load_extension("orgmode")
             require("orgmode").setup(require("opts.org").org())
             require("cmp").setup.filetype("org", {
                 sources = require("cmp").config.sources({
