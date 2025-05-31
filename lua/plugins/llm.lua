@@ -21,13 +21,21 @@ return {
             "ibhagwan/fzf-lua",
         },
         opts = {
-            provider = "deepseek",
-            auto_suggestions_provider = "deepseek",
+            provider = "claude",
+            auto_suggestions_provider = "claude",
             cursor_applying_provider = "groq",
             memory_summary_provider = "claude",
+            web_search_engine = {
+                provider = "tavily",
+                providers = {
+                    tavily = {
+                        api_key_name = "cmd:rbw get tavily-unikvim-key"
+                    }
+                }
+            },
             claude = {
                 api_key_name = "cmd:rbw get anthropic-unikvim-key",
-                model = "claude-3-7-sonnet-latest",
+                model = "claude-sonnet-4-0",
             },
             vendors = {
                 mistral = {
