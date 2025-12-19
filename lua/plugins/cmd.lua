@@ -2,8 +2,9 @@ return {
     {
         "stevearc/overseer.nvim",
         lazy = true,
+        version = "1.6.0",
         cmd = { "OverseerRun", "OverseerToggle", "OverseerInfo" },
-        keys = require('keymaps.misc').overseer,
+        keys = require("keymaps.misc").overseer,
         opts = {
             strategy = {
                 "toggleterm",
@@ -21,14 +22,14 @@ return {
         },
         config = function(_, opts)
             require("overseer").setup(opts)
-        end
+        end,
     },
     {
-        'akinsho/toggleterm.nvim',
+        "akinsho/toggleterm.nvim",
         lazy = true,
         cmd = { "ToggleTerm", "TermExec" },
         version = "*",
         opts = {},
-        keys = require("keymaps.cmd")
-    }
+        keys = require("keymaps.cmd"),
+    },
 }
