@@ -2,6 +2,8 @@
 return {
     {
         "yetone/avante.nvim",
+        event = "VeryLazy",
+        version = false,
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
             "stevearc/dressing.nvim",
@@ -21,63 +23,53 @@ return {
             "ibhagwan/fzf-lua",
         },
         opts = {
-            provider = "claude",
-            auto_suggestions_provider = "claude",
-            cursor_applying_provider = "groq",
-            memory_summary_provider = "claude",
-            web_search_engine = {
-                provider = "tavily",
-                providers = {
-                    tavily = {
-                        api_key_name = "cmd:rbw get tavily-unikvim-key"
-                    }
-                }
+            provider = "gemini",
+            rag_service = {
+                enabled = true,
+                runner = "nix",
+                host_mount = os.getenv("HOME"),
             },
-            claude = {
-                api_key_name = "cmd:rbw get anthropic-unikvim-key",
-                model = "claude-sonnet-4-0",
-            },
-            vendors = {
-                mistral = {
-                    __inherited_from = "openai",
-                    api_key_name = "cmd:rbw get mistral-unikvim-key",
-                    endpoint = "https://api.mistral.ai/v1",
-                    model = "mistral-large-latest",
-                    temperature = 0.0,
-                    max_tokens = 16384,
-                },
-                codestral = {
-                    __inherited_from = "openai",
-                    api_key_name = "cmd:rbw get codestral-unikvim-key",
-                    endpoint = "https://codestral.mistral.ai/v1",
-                    -- model = "codestral",
-                    temperature = 0.0,
-                    max_tokens = 8192,
+            -- instruction_file = "avante.md",
+            providers = {
+                claude = {
+                    endpoint = "https://api.anthropic.com",
+                    model = "claude-sonnet-4-5",
                 },
                 groq = {
-                    __inherited_from = "openai",
-                    api_key_name = "cmd:rbw get groq-unikvim-key",
                     endpoint = "https://api.groq.com/openai/v1",
                     model = "llama-3.3-70b-versatile",
-                    max_tokens = 32768,
                 },
                 deepseek = {
-                    __inherited_from = "openai",
-                    api_key_name = "cmd:rbw get deepseek-unikvim-key",
                     endpoint = "https://api.deepseek.com/v1",
                     model = "deepseek-chat",
-                    temperature = 0.0,
-                    max_tokens = 8192,
-                }
+                },
+                gemini = {
+                    endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
+                    model = "gemini-3-pro-preview",
+                },
+            },
+            acp_providers = {
+                ["claude-code"] = {
+                    command = "npx",
+                    args = { "@zed-industries/claude-caude-acp" },
+                    env = {
+                        NODE_NO_WARNINGS = 1,
+                        ANTHROPIC_API_KEY = os.execute("secret-tool lookup name anthropic-unikvim-key"),
+                    },
+                },
             },
             behaviour = {
-                enable_cursor_planning_mode = true,
+                -- auto_suggestions = true,
                 timeout = 30000,
                 max_completion_tokens = 8192,
             },
             file_selector = {
-                provider = "fzf"
-            }
+                provider = "fzf",
+            },
+            suggestion = {
+                debounce = 600,
+                throttle = 600,
+            },
         },
         keys = require("keymaps.llm"),
         build = "make",
