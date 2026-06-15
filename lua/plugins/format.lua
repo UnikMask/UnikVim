@@ -1,6 +1,6 @@
 return {
     {
-        "nvim-treesitter/nvim-treesitter",
+        "romus204/tree-sitter-manager.nvim",
         dependencies = {
             "RRethy/vim-illuminate",
             "folke/todo-comments.nvim",
@@ -9,9 +9,7 @@ return {
         event = "BufRead",
         opts = {
             auto_install = true,
-            highlight = {
-                enable = true,
-            },
+            highlight = true,
             incremental_selection = {
                 enable = true,
             },
@@ -22,7 +20,7 @@ return {
         config = function(_, opts)
             vim.o.foldmethod = "expr"
             vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
-            require("nvim-treesitter.configs").setup(opts)
+            require("tree-sitter-manager").setup(opts)
         end,
     },
     {

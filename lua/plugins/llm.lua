@@ -5,7 +5,7 @@ return {
         event = "VeryLazy",
         version = false,
         dependencies = {
-            "nvim-treesitter/nvim-treesitter",
+            "romus204/tree-sitter-manager.nvim",
             "stevearc/dressing.nvim",
             "nvim-lua/plenary.nvim",
             {
