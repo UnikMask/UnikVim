@@ -8,7 +8,7 @@ end
 
 M.org = function()
     return {
-        org_agenda_files = { "~/org/**/*.org" },
+        org_agenda_files = "~/org/**/*.org",
         org_default_notes_file = "~/org/notes.org",
         emacs_config = { executable_path = "/usr/bin/emacs", config_path = "~/.config/emacs/early-init.el" },
         org_custom_exports = {

@@ -1,7 +1,7 @@
 return {
     {
         "nvim-orgmode/orgmode",
-        -- version = "*",
+        version = "0.7.2",
         lazy = true,
         dependencies = {
             "hrsh7th/nvim-cmp",
@@ -40,7 +40,7 @@ return {
         lazy = true,
         version = "*",
         enabled = false,
-        event = "VeryLazy",
+        -- event = "VeryLazy",
         ft = { "org" },
         dependencies = {
             "nvim-orgmode/orgmode",
